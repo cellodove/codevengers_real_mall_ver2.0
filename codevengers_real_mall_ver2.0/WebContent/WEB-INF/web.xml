@@ -9,4 +9,55 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  	<!-- 멤버 서블릿 -->
+   <servlet>
+		<servlet-name>MemberFrontController</servlet-name>
+		<servlet-class>ven.shop.controller.MemberFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberFrontController</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 보드 서블릿 -->
+	<servlet>
+		<servlet-name>BoardFrontController</servlet-name>
+		<servlet-class>ven.shop.controller.BoardFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardFrontController</servlet-name>
+		<url-pattern>*.go</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 관리자 서블릿 -->
+	<servlet>
+		<servlet-name>AdminFrontController</servlet-name>
+		<servlet-class>ven.shop.controller.AdminFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdminFrontController</servlet-name>
+		<url-pattern>*.ko</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 상품 서블릿 -->
+	<servlet>
+		<servlet-name>ItemFrontController</servlet-name>
+		<servlet-class>ven.shop.controller.ItemFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ItemFrontController</servlet-name>
+		<url-pattern>*.no</url-pattern>
+	</servlet-mapping>
+	
+	<!-- UTF-8 필터 -->
+	<filter>
+		<filter-name>Encoding</filter-name>
+		<filter-class>ven.shop.filter.EncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 </web-app>
