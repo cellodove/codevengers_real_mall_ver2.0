@@ -19,26 +19,26 @@ public class MemberFrontController extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 서블릿 맵핑명을 설정한다.
+		// �꽌釉붾┸ 留듯븨紐낆쓣 �꽕�젙�븳�떎.
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String pathURL = requestURI.substring(contextPath.length());
 
-		// 포워딩 정보 저장
+		// �룷�썙�뵫 �젙蹂� ���옣
 		ActionCommand actionCommand = null;
-		// 메소드 규격화
+		// 硫붿냼�뱶 洹쒓꺽�솕
 		Action action = null;
 
 		if (pathURL.equals("/MemberMain.do")) {
 			action = new MemberMainService();
-			System.out.println("memberMain.do연결");
+			System.out.println("memberMain.do�뿰寃�");
 			try {
 				actionCommand = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else if (false) {
-			
+			System.out.println();
 		}
 
 		
@@ -51,7 +51,7 @@ public class MemberFrontController extends HttpServlet {
 		
 		
 		if (actionCommand != null) {
-			// isRedirect 메소드 값이 false이면 forward 방식이고 true이면 redirect 방식이 된다.
+			// isRedirect 硫붿냼�뱶 媛믪씠 false�씠硫� forward 諛⑹떇�씠怨� true�씠硫� redirect 諛⑹떇�씠 �맂�떎.
 			if (actionCommand.isRedirect()) {
 				response.sendRedirect(actionCommand.getPath());
 			} else {
