@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ven.item.service.ItemManListService;
+import ven.item.service.ItemRunningListService;
+import ven.item.service.ItemSuitShoesListService;
+import ven.item.service.ItemWomanListService;
 import ven.shop.action.Action;
 import ven.shop.command.ActionCommand;
 
@@ -30,6 +34,42 @@ public class ItemFrontController extends HttpServlet {
 			actionCommand.setRedirect(false);
 			actionCommand.setPath("./item/item_main.jsp");
 			System.out.println("ItemMain.no");
+			//////////////////////////////////
+		} else if (pathURL.equals("/ItemMan.no")) {
+			action = new ItemManListService();
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println("ItemMan.no");
+			///////////////////////////////
+		}else if (pathURL.equals("/ItemWoman.no")) {
+			action = new ItemWomanListService();
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println("ItemWoan.no");
+			/////////////////////////////////
+		}else if (pathURL.equals("/ItemRunning.no")) {
+			action = new ItemRunningListService();
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println("ItemRunning.no");
+			/////////////////////////////////
+		}else if (pathURL.equals("/ItemSuitShoes.no")) {
+			action = new ItemSuitShoesListService();
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println("ItemSuitShoes.no");
 		}
 
 		
