@@ -19,28 +19,35 @@ public class MemberFrontController extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// �꽌釉붾┸ 留듯븨紐낆쓣 �꽕�젙�븳�떎.
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String pathURL = requestURI.substring(contextPath.length());
 
-		// �룷�썙�뵫 �젙蹂� ���옣
 		ActionCommand actionCommand = null;
-		// 硫붿냼�뱶 洹쒓꺽�솕
 		Action action = null;
 
 		if (pathURL.equals("/MemberMain.do")) {
 			action = new MemberMainService();
-			System.out.println("memberMain.do�뿰寃�");
+			System.out.println("memberMain.do");
 			try {
 				actionCommand = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (false) {
-			System.out.println();
+			
+		}else if (pathURL.equals("/MemberLogin.do")) {
+			actionCommand = new ActionCommand();
+			actionCommand.setRedirect(false);
+			actionCommand.setPath("./member/member_login.jsp");
+			System.out.println("memberLogin.do");
+			
+		}else if (pathURL.equals("/MemberAllInfo.do")) {
+			actionCommand = new ActionCommand();
+			actionCommand.setRedirect(false);
+			actionCommand.setPath("./member/member_all_info.jsp");
+			System.out.println("member_all_info.do");
 		}
-
+		
 		
 		
 		
@@ -51,7 +58,6 @@ public class MemberFrontController extends HttpServlet {
 		
 		
 		if (actionCommand != null) {
-			// isRedirect 硫붿냼�뱶 媛믪씠 false�씠硫� forward 諛⑹떇�씠怨� true�씠硫� redirect 諛⑹떇�씠 �맂�떎.
 			if (actionCommand.isRedirect()) {
 				response.sendRedirect(actionCommand.getPath());
 			} else {
