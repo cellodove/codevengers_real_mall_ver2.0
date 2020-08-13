@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ven.member.service.MemberLoginCheckService;
 import ven.member.service.MemberMainService;
 import ven.shop.action.Action;
 import ven.shop.command.ActionCommand;
@@ -46,6 +47,16 @@ public class MemberFrontController extends HttpServlet {
 			actionCommand.setRedirect(false);
 			actionCommand.setPath("./member/member_all_info.jsp");
 			System.out.println("member_all_info.do");
+			
+		} else if (pathURL.equals("/MemberLoginCheck.do")) {
+			action = new MemberLoginCheckService();
+			System.out.println("MemberLoginCheck.do");
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		

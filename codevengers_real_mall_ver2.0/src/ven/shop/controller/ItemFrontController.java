@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ven.item.service.ItemManDetailService;
 import ven.item.service.ItemManListService;
 import ven.item.service.ItemRunningListService;
 import ven.item.service.ItemSuitShoesListService;
@@ -70,6 +71,16 @@ public class ItemFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			System.out.println("ItemSuitShoes.no");
+			
+		}else if (pathURL.equals("/ItemManDetail.no")) {
+			action = new ItemManDetailService();
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println("ItemManDetail.no");
+			
 		}
 
 		
