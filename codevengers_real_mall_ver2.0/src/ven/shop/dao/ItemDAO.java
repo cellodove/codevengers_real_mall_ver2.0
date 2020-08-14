@@ -9,11 +9,23 @@ import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import ven.shop.model.MallItemVO;
 
 public class ItemDAO {
+	
+	public ItemDAO() {
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			System.out.println(dataSource + "연결되었습니다!!");
+		} catch (NamingException e) {
+			System.out.println("DB 연결 실패 유감 ㅠㅠ");
+			e.printStackTrace();
+		}
+	}
 
 	public int getManListCount() {
 		System.out.println("getManListCount come");
