@@ -37,7 +37,7 @@ public class ItemDAO {
 			Context context = new InitialContext();
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
 			connection = dataSource.getConnection();
-			String sql = "select count(man) from mall_item";
+			String sql = "select count(*) from mall_item where item_gender = 'man'";
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
