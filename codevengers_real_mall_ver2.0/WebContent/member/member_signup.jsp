@@ -6,8 +6,7 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
-
- <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -55,16 +54,175 @@
                 document.getElementById("sample6_detailAddress").focus();
             }
         }).open();
-    }
+    }  
+    
+</script>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script type="text/javascript" src="jquery.ui.datepicker-ko.js"></script>
+<script type="text/javascript">
+    $(document)
+            .ready(
+                    function() {
+                    	$.datepicker.setDefaults({
+                    	    dateFormat: 'yy-mm-dd' //Input Display Format 변경
+                    	    ,showOtherMonths: true
+                    	});
+                        $("#btn_join")
+                                .click(
+                                        function() {
+                                            var tel1_pattern = /(^01[016789]$)/; //정규식
+                                            
+                                            //alert("ok");
+                                            if ($("#id").val() == "") {
+                                                alert("아이디를 꼭 입력하세요!");
+                                                $("#id").focus();
+                                                return false;
+                                            } else if ($("#pwd").val() == "") {
+                                                alert("비밀번호를 꼭 입력하세요!");
+                                                $("#pwd").focus();
+                                                return false;
+ 
+                                            } else if ($("#pwd2").val() == "") {
+                                                alert("비밀번호확인 을 꼭 입력하세요!");
+                                                $("#pwd2").focus();
+                                                return false;
+ 
+                                            } else if ($("#pwd").val() != $(
+                                                    "#pwd2").val()) {
+                                                alert("비밀번호와 비밀번호 확인이 일치하지않습니다.");
+                                                $("#pwd").val("");
+                                                $("#pwd2").val("");
+                                                $("#pwd1").focus();
+                                                return false;
+ 
+                                            } else if ($("#name").val() == "") {
+                                                alert("이름을 꼭 입력하세요!");
+                                                $("#name").focus();
+                                                return false;
+ 
+                                            } else if ($("#mem_birth").val() == "") {
+                                                alert("생일을  꼭 입력하세요!");
+                                                $("#mem_birth").focus();
+                                                return false;
+ 
+                                            } else if ($("#tel1").val() == "") {
+                                                alert("전화번호 첫번째자리 입력하세요!");
+                                                $("#tel1").focus();
+                                                return false;
+ 
+                                            } else if ($("#tel1").val().length != 3) {
+ 
+                                                alert("전화1을 3개의 숫자로 꼭 입력하세요!");
+                                                $("#tel1").val("");
+                                                $("#tel1").focus();
+                                                return false;
+ 
+                                            } else if (isNaN($("#tel1").val())) {
+                                                alert("전화1을 3개의 숫자로 꼭 입력하세요!");
+                                                $("#tel1").val("");
+                                                $("#tel1").focus();
+                                                return false;
+ 
+                                            } else if (!tel1_pattern.test($(
+                                                    "#tel1").val())) {
+                                                alert("010만 가능합니다.")
+                                                $("#tel1").val("")
+                                                $("#tel1").focus();
+                                                return false;
+                                            }
+ 
+                                            else if ($("#tel2").val() == "") {
+                                                alert("전화번호 두번째자리를 입력하세요!");
+                                                $("#tel2").focus();
+                                                return false;
+ 
+                                            } else if ($("#tel1").val().length != 3) {
+ 
+                                                alert("전화1을 3개의 숫자로 꼭 입력하세요!");
+                                                $("#tel2").val("");
+                                                $("#tel2").focus();
+                                                return false;
+ 
+                                            } else if (isNaN($("#tel2").val())) {
+                                                alert("전화2을 3~4개의 숫자로 꼭 입력하세요!");
+                                                $("#tel2").val("");
+                                                $("#tel2").focus();
+                                                return false;
+ 
+                                            } else if ($("#tel2").val() != ""
+                                                    & $("#tel2").val().length > 4
+                                                    & isNaN($("#tel2").val())) {
+                                                alert("okkkkkkk");
+                                                //var pattern = /(^010$)/; //정규식 슬래쉬(/)로 시작해서, 슬래쉬(/)로 끝났다.
+                                                var tel1 = $("#tel2").val();
+                                                if (!pattern.test(tel1)) {
+                                                    //틀리면
+                                                    alert("010만 가능합니다.")
+                                                    $("#te2").val("")
+                                                    $("#te2").focus();
+                                                    return false;
+                                                }
+                                            }
+ 
+                                            else if ($("#tel3").val() == "") {
+                                                alert("전화번호 세번째자리를 입력하세요!");
+                                                $("#tel3").focus();
+                                                return false;
+ 
+                                            } else if ($("#sample6_postcode").val() == "") {
+                                                alert("우편번호를 꼭 입력하세요!");
+                                                $("#sample6_postcode").focus();
+                                                return false;
+ 
+                                            }else if ($("#sample6_address").val() == "") {
+                                                alert("주소를 꼭 입력하세요!");
+                                                $("#sample6_address").focus();
+                                                return false;
+ 
+                                            } else if ($("#sample6_detailAddress").val() == "") {
+                                                alert("상세주소를 꼭 입력하세요!");
+                                                $("#sample6_detailAddress").focus();
+                                                return false;
+ 
+                                            }  else if ($("#yes").is(':checked') == false
+                                                    && $("#no").is(':checked') == false) {
+                                     			   alert("이메일수신 여부를  꼭 선택하세요!");
+                                     			  return false;
+                                        
+                                    		} else if ($("#yess").is(':checked') == false
+                                                    && $("#noo").is(':checked') == false) {
+                                                alert("문자수신 여부를  꼭 선택하세요!");
+                                                return false;
+                                                
+                                            } else if ($("#man").is(':checked') == false
+                                                    && $("#woman").is(':checked') == false) {
+                                                alert("성별를  꼭 선택하세요!");
+                                                return false;
+                                                
+                                            } else if ($("#email").val() == "") {
+                                                alert("이메일을 꼭 입력하세요!");
+                                                $("#email").focus();
+                                                return false;
+                                                
+                                            } else {
+                                                alert("가입되었습니다");
+                                                alert("이메일 인증창으로 이동합니다.");
+                                            }
+                                        });
+                      
+                        $("#mem_birth").datepicker();
+                        
+                    });
 </script>
 
 
-
 <body>
-<form action="./MemberAdd.do">
+<form action="./MemberAdd.do" method="post" name="signupform">
 <fieldset>
 <table>
-
 	<h1>회원가입</h1>
 	
 			<tr>
@@ -98,7 +256,7 @@
             <tr>
                 <th>생일</th>
                 <td>
-                    <input type="text" name="mem_birth" id="mem_birth" size="8" maxlength="8" />
+                    <input type="text" name="mem_birth" id="mem_birth" id="mem_birth"size="8" maxlength="8" />
                 </td>
             </tr>
             
@@ -143,8 +301,7 @@
             <tr>
                 <th>이메일</th>
                 <td>
-                    <input type="text" name="mem_email" id="email" size="50"maxlength="50" />
-                    
+                    <input type="text" name="mem_email" id="email" size="30"maxlength="30" />
                 </td>
             </tr>
             
@@ -164,8 +321,8 @@
             
             <tr>
                 <td colspan="2">
-                    <input type="submit"  value="가입">
-                    <input type="reset"  value="취소">
+                    <input type="submit" id="btn_join"  value="가입">
+                    <input type="reset" id="btn_cancel" value="취소">
                 </td>
             </tr>
 </table>

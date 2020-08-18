@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ven.member.service.MemberAddService;
+import ven.member.service.MemberFindAccountService;
 import ven.member.service.MemberLoginCheckService;
+import ven.member.service.MemberMailCodeCheckService;
 import ven.member.service.MemberMainService;
+import ven.member.service.MemberSendMailService;
 import ven.shop.action.Action;
 import ven.shop.command.ActionCommand;
 
@@ -66,13 +69,38 @@ public class MemberFrontController extends HttpServlet {
 			
 		}else if (pathURL.equals("/MemberAdd.do")) {
 			action = new MemberAddService();
-			System.out.println("MemberAddCheck.do");
+			System.out.println("MemberAdd.do");
 			try {
 				actionCommand = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
+		}else if (pathURL.equals("/MemberSendMail.do")) {
+			System.out.println("MemberSendMail.do");
+			action = new MemberSendMailService();
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (pathURL.equals("/MemberMailCodeCheck.do")) {
+			System.out.println("memberMailCheck.do");
+			action = new MemberMailCodeCheckService();
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		}else if (pathURL.equals("/MemberFindAccount.do")) {
+			System.out.println("MemberFindAccount.do");
+			action = new MemberFindAccountService();
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
