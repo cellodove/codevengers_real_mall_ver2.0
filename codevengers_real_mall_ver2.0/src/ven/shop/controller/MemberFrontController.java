@@ -94,6 +94,12 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 	
+		}else if (pathURL.equals("/MemberFindGo.do")) {
+			System.out.println("MemberFindGo.do");
+			actionCommand = new ActionCommand();
+			actionCommand.setRedirect(false);
+			actionCommand.setPath("./member/member_find.jsp");
+			
 		}else if (pathURL.equals("/MemberFindAccount.do")) {
 			System.out.println("MemberFindAccount.do");
 			action = new MemberFindAccountService();
@@ -102,6 +108,7 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+	
 		}
 		
 		

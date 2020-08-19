@@ -14,7 +14,7 @@
 </form>
 <br/>
 
-<button type="button" onclick="location.href='./MemberFindAccount.do'">	아이디 비밀번호찾기</button>
+<button type="button" onclick="location.href='./MemberFindAccountGo.do'">	아이디 비밀번호찾기</button>
 <button type="button" onclick="location.href='./MemberSignup.do'">	회원가입</button>
 
 
