@@ -26,12 +26,12 @@ public class MemberMailCodeCheckService implements Action {
 		if(!authenticationKey.equals(authenticationUser))
         {
             System.out.println("인증번호 일치하지 않음");
-            request.setAttribute("msg", "인증번호가 일치하지 않습니다");
+
             actionCommand.setPath("./member/member_email_check.jsp");
             return actionCommand;
         } else {
         	System.out.println("인증번호 일치");
-        	request.setAttribute("msg", "인증번호가 일치합니다 인증되었습니다.");
+
         	memberVO.setMem_email(mem_email);
         	memberDAO.emailCheck(memberVO);
         	actionCommand.setPath("./main/main.jsp");

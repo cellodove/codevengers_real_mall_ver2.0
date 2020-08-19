@@ -28,7 +28,7 @@ public class ItemDAO {
 	}
 
 	public int getManListCount() {
-		System.out.println("getManListCount come");
+		System.out.println("getManListCount dao come");
 		int i = 0;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -44,7 +44,7 @@ public class ItemDAO {
 				i = resultSet.getInt(1);
 			}
 		} catch (Exception e) {
-			System.out.println("manListCount Err");
+			System.out.println("manListCount dao Err");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -52,7 +52,7 @@ public class ItemDAO {
 				preparedStatement.close();
 				connection.close();
 			} catch (SQLException e) {
-				System.out.println("manListCount DB Err");
+				System.out.println("manListCount dao DB Err");
 				e.printStackTrace();
 			}
 		}
@@ -61,7 +61,7 @@ public class ItemDAO {
 	
 	
 	public List<MallItemVO> getManList(int page, int limit) {
-		System.out.println("getManList come");
+		System.out.println("getManList dao come");
 		
 		List<MallItemVO> list = new ArrayList<MallItemVO>();
 		int startrow = (page - 1) * 10 + 1;
@@ -76,7 +76,7 @@ public class ItemDAO {
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
 			connection = dataSource.getConnection();
 			String sql = "select * from(select rownum rnum, item_num, item_name, item_type,item_gender,item_price,item_picture";
-			sql+=" from (select * from count(man)))";
+			sql+=" from (select * from mall_item where item_gender = 'man'))";
 			sql+="where rnum>=? and rnum<=?";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, startrow);
@@ -95,7 +95,7 @@ public class ItemDAO {
 			}
 			return list;
 		} catch (Exception e) {
-			System.out.println("getManList Err");
+			System.out.println("getManList dao Err");
 			e.printStackTrace();
 		}finally {
 			try {
@@ -103,7 +103,7 @@ public class ItemDAO {
 				preparedStatement.close();
 				connection.close();
 			} catch (SQLException e) {
-				System.out.println("getManList DB Err");
+				System.out.println("getManList dao DB Err");
 				e.printStackTrace();
 			}
 		}
@@ -112,7 +112,7 @@ public class ItemDAO {
 
 
 	public int getWomanListCount() {
-		System.out.println("getWomanListCount come");
+		System.out.println("getWomanListCount dao come");
 		int i = 0;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -121,14 +121,14 @@ public class ItemDAO {
 			Context context = new InitialContext();
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
 			connection = dataSource.getConnection();
-			String sql = "select count(woman) from mall_item";
+			String sql = "select count(*) from mall_item where item_gender = 'woman'";
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				i = resultSet.getInt(1);
 			}
 		} catch (Exception e) {
-			System.out.println("WomanListCount Err");
+			System.out.println("WomanListCount dao Err");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -136,7 +136,7 @@ public class ItemDAO {
 				preparedStatement.close();
 				connection.close();
 			} catch (SQLException e) {
-				System.out.println("WomanListCount DB Err");
+				System.out.println("WomanListCount dao DB Err");
 				e.printStackTrace();
 			}
 		}
@@ -146,7 +146,7 @@ public class ItemDAO {
 	
 	
 	public List<MallItemVO> getWomanList(int page, int limit) {
-		System.out.println("getWomanList come");
+		System.out.println("getWomanList dao come");
 		
 		List<MallItemVO> list = new ArrayList<MallItemVO>();
 		int startrow = (page - 1) * 10 + 1;
@@ -161,7 +161,7 @@ public class ItemDAO {
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
 			connection = dataSource.getConnection();
 			String sql = "select * from(select rownum rnum, item_num, item_name, item_type,item_gender,item_price,item_picture";
-			sql+=" from (select * from count(woman)))";
+			sql+=" from (select * from mall_item where item_gender = 'woman'))";
 			sql+="where rnum>=? and rnum<=?";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, startrow);
@@ -180,7 +180,7 @@ public class ItemDAO {
 			}
 			return list;
 		} catch (Exception e) {
-			System.out.println("getWomanList Err");
+			System.out.println("getWomanList dao Err");
 			e.printStackTrace();
 		}finally {
 			try {
@@ -188,7 +188,7 @@ public class ItemDAO {
 				preparedStatement.close();
 				connection.close();
 			} catch (SQLException e) {
-				System.out.println("getWomanList DB Err");
+				System.out.println("getWomanList dao DB Err");
 				e.printStackTrace();
 			}
 		}
@@ -197,7 +197,7 @@ public class ItemDAO {
 
 
 	public MallItemVO getDetail(int num) {
-		System.out.println("getDetail come");
+		System.out.println("getDetail dao come");
 		
 		MallItemVO mallItemVO = null;
 		Connection connection = null;
@@ -225,7 +225,7 @@ public class ItemDAO {
 	}
 			return mallItemVO;
 		} catch (Exception e) {
-			System.out.println("getDetail Err");
+			System.out.println("getDetail dao Err");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -233,7 +233,7 @@ public class ItemDAO {
 				preparedStatement.close();
 				connection.close();
 			} catch (SQLException e) {
-				System.out.println("getDetail DB Err");
+				System.out.println("getDetail dao DB Err");
 				e.printStackTrace();
 			}
 		}

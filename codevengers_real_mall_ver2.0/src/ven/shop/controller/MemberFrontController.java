@@ -84,6 +84,7 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 		}else if (pathURL.equals("/MemberMailCodeCheck.do")) {
 			System.out.println("memberMailCheck.do");
 			action = new MemberMailCodeCheckService();
@@ -92,7 +93,7 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
+	
 		}else if (pathURL.equals("/MemberFindAccount.do")) {
 			System.out.println("MemberFindAccount.do");
 			action = new MemberFindAccountService();

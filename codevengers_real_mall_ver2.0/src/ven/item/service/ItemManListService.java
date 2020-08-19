@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import ven.shop.action.Action;
 import ven.shop.command.ActionCommand;
-import ven.shop.dao.BoardDAO;
 import ven.shop.dao.ItemDAO;
 
 public class ItemManListService implements Action {

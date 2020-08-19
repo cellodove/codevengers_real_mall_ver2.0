@@ -40,7 +40,7 @@ public class MemberAddService implements Action {
 			memberVO.setMem_grade("Bronze");
 			memberVO.setMem_point(0);
 			memberVO.setMem_receive_email(request.getParameter("mem_receive_email"));
-			memberVO.setMem_receive_sms("mem_receive_sms");
+			memberVO.setMem_receive_sms(request.getParameter("mem_receive_sms"));
 			memberVO.setMem_adminmemo(null);
 			memberVO.setMem_group(null);
 			memberVO.setMem_manager("NO");

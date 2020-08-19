@@ -293,8 +293,8 @@
             <tr>
                 <th>성별</th>
                 <td>
-                    <input type="radio" name="mem_gender" id="man"  value="남자" checked="checked">남자 
-                    <input type="radio" name="mem_gender" id="woman"  value="여자">여자
+                    <input type="radio" name="mem_gender" id="man"  value="man" checked="checked">남자 
+                    <input type="radio" name="mem_gender" id="woman"  value="woman">여자
                 </td>
             </tr>
             
@@ -307,15 +307,15 @@
             
             <tr>
                 <th>이메일 수신여부</th>
-                <td><input type="radio" name="mem_receive_email" id="yes" value="수신">수신
-                    <input type="radio" name="mem_receive_email" id="no" value="미수신">미수신
+                <td><input type="radio" name="mem_receive_email" id="yes" value="yes">수신
+                    <input type="radio" name="mem_receive_email" id="no" value="no">미수신
                 </td>
             </tr>
             
             <tr>
                 <th>문자 수신여부</th>
-                <td><input type="radio" name="mem_receive_sms" id="yess" value="수신">수신
-                    <input type="radio" name="mem_receive_sms" id="noo" value="미수신">미수신
+                <td><input type="radio" name="mem_receive_sms" id="yess" value="yes">수신
+                    <input type="radio" name="mem_receive_sms" id="noo" value="no">미수신
                 </td>
             </tr></br>
             

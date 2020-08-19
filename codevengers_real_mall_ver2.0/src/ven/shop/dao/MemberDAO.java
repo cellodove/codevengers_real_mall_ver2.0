@@ -13,7 +13,6 @@ import javax.sql.DataSource;
 import ven.shop.model.MemberVO;
 
 public class MemberDAO {
-	MemberVO memberVO = new MemberVO();
 	
 	public MemberDAO() {
 		try {
@@ -26,7 +25,7 @@ public class MemberDAO {
 		}
 	}
 
-	public boolean loginCheck() {
+	public boolean loginCheck(MemberVO memberVO) {
 		System.out.println("loginCheck DAO COME");
 		
 		String sql="";
@@ -72,8 +71,8 @@ public class MemberDAO {
 		return false;
 	}
 
-	public boolean memberInsert(MemberVO memberVO2) {
-		System.out.println("memberInsert come");
+	public boolean memberInsert(MemberVO memberVO) {
+		System.out.println("memberInsert dao come");
 		int mem_num=0;
 		String sql="";
 		int result = 0;
@@ -136,7 +135,7 @@ public class MemberDAO {
 				return true;
 			}
 		} catch (Exception e) {
-			System.out.println("memberInsert error");
+			System.out.println("memberInsert dao error");
 			e.printStackTrace();
 		}finally {
 			try {
@@ -144,7 +143,7 @@ public class MemberDAO {
 				preparedStatement.close();
 				connection.close();
 			} catch (SQLException e) {
-				System.out.println("memberInsert DB error");
+				System.out.println("memberInsert dao DB error");
 				e.printStackTrace();
 			}
 		}
@@ -153,6 +152,7 @@ public class MemberDAO {
 	}
 
 	public boolean emailCheck(MemberVO memberVO) {
+		System.out.println("emailCheck dao come");
 		String sql="";
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -172,7 +172,7 @@ public class MemberDAO {
 			
 			
 		} catch (Exception e) {
-			System.out.println("emailCheck error");
+			System.out.println("emailCheck dao error");
 			e.printStackTrace();
 		}finally {
 			try {
@@ -180,7 +180,7 @@ public class MemberDAO {
 				preparedStatement.close();
 				connection.close();
 			} catch (SQLException e) {
-				System.out.println("emailCheck DB error");
+				System.out.println("emailCheck dao DB error");
 				e.printStackTrace();
 			}
 		}

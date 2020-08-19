@@ -20,6 +20,9 @@ public class MemberLoginCheckService implements Action {
 		
 		System.out.println("MemberLoginCheckService Come");
 		
+		System.out.println(request.getParameter("mem_id"));
+		System.out.println(request.getParameter("mem_passwd"));
+		
 		String mem_id = request.getParameter("mem_id");
 		String mem_passwd=request.getParameter("mem_passwd");
 		
@@ -28,7 +31,7 @@ public class MemberLoginCheckService implements Action {
 		
 		ActionCommand actionCommand = new ActionCommand();
 		actionCommand.setRedirect(false);
-		boolean loginCheck = memberDAO.loginCheck();
+		boolean loginCheck = memberDAO.loginCheck(memberVO);
 		if (loginCheck) {
 			System.out.println("Login OK");
 			
