@@ -94,8 +94,8 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 	
-		}else if (pathURL.equals("/MemberFindGo.do")) {
-			System.out.println("MemberFindGo.do");
+		}else if (pathURL.equals("/MemberFindAccountGo.do")) {
+			System.out.println("MemberFindAccountGo.do");
 			actionCommand = new ActionCommand();
 			actionCommand.setRedirect(false);
 			actionCommand.setPath("./member/member_find.jsp");

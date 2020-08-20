@@ -40,9 +40,13 @@ public class MemberLoginCheckService implements Action {
 			actionCommand.setPath("./main/main.jsp");
 			
 		}else {
+			
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			
 			PrintWriter printWriter = response.getWriter();
 			printWriter.println("<script type='text/javascript'>");
-			printWriter.println("alert('ID OR PASSWD FAIL TRY AGAIN');");
+			printWriter.println("alert('아이디나 비밀번호가 틀렸습니다.');");
 			printWriter.println("history.back();");
 			printWriter.println("</script>");
 

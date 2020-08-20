@@ -26,7 +26,7 @@ public class MemberSendMailService implements Action {
 		// mail server 설정
 		String host = "smtp.naver.com";
 		String user = "vividcello@naver.com"; // 자신의 네이버 계정
-		String password = "코딩저스";// 자신의 네이버 패스워드
+		String password = "zheldwjtm123?";// 자신의 네이버 패스워드
 
 		// 메일 받을 주소
 		/* String to_email = m.getEmail(); */

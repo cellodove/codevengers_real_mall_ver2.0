@@ -187,4 +187,78 @@ public class MemberDAO {
 		return false; 
 	}
 
+	public boolean memberFindNameBirth(MemberVO memberVO) {
+		System.out.println("memberFindNameBirth dao come");
+		String sql="";
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource)context.lookup("java:comp/env/jdbc");
+			connection=dataSource.getConnection();
+			
+			//회원 번호의 최댓값 조회 글 등록할때 번호 순차적으로 지정
+			sql="select mem_id, mem_passwd, mem_email from member where mem_name = ? and mem_birth = ? ";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, memberVO.getMem_name());
+			preparedStatement.setDate(2, memberVO.getMem_birth());
+			resultSet=preparedStatement.executeQuery();
+			
+			resultSet=preparedStatement.executeQuery();
+			// int result = preparedStatement.executeUpdate();
+			
+			if (resultSet==null) {
+				System.out.println("dao에 없는회원입니다.");
+				return false;
+			}else {
+				System.out.println("아이디 비번 승인 dao");
+				
+				while (resultSet.next()) {
+					System.out.println(resultSet.getString("mem_id"));
+					System.out.println(resultSet.getString("mem_passwd"));
+					System.out.println(resultSet.getString("mem_email"));
+					
+					memberVO.setMem_id(resultSet.getString("mem_id"));
+					memberVO.setMem_passwd(resultSet.getString("mem_passwd"));
+					memberVO.setMem_email(resultSet.getString("mem_email"));
+				}
+				return true;
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("memberFindNameBirth dao error");
+			e.printStackTrace();
+		}finally {
+			try {
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				System.out.println("memberFindNameBirth dao DB error");
+				e.printStackTrace();
+			}
+		}
+		return false; 
+
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
