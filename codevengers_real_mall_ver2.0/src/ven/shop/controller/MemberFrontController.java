@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ven.member.service.MemberAddService;
-import ven.member.service.MemberFindAccountService;
+import ven.member.service.MemberFindAccountIDService;
+import ven.member.service.MemberFindAccountPasswdService;
 import ven.member.service.MemberLoginCheckService;
 import ven.member.service.MemberMailCodeCheckService;
 import ven.member.service.MemberMainService;
@@ -100,9 +101,30 @@ public class MemberFrontController extends HttpServlet {
 			actionCommand.setRedirect(false);
 			actionCommand.setPath("./member/member_find.jsp");
 			
-		}else if (pathURL.equals("/MemberFindAccount.do")) {
+		}else if (pathURL.equals("/MemberFindAccountIDGo.do")) {
+			System.out.println("MemberFindAccountIDGo.do");
+			actionCommand = new ActionCommand();
+			actionCommand.setRedirect(false);
+			actionCommand.setPath("./member/member_find_id.jsp");
+			
+		}else if (pathURL.equals("/MemberFindAccountPasswdGo.do")) {
+			System.out.println("MemberFindAccountPasswdGo.do");
+			actionCommand = new ActionCommand();
+			actionCommand.setRedirect(false);
+			actionCommand.setPath("./member/member_find_passwd.jsp");
+			
+		}else if (pathURL.equals("/MemberFindAccountID.do")) {
 			System.out.println("MemberFindAccount.do");
-			action = new MemberFindAccountService();
+			action = new MemberFindAccountIDService();
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
+		}else if (pathURL.equals("/MemberFindAccountPasswd.do")) {
+			System.out.println("MemberFindAccountPasswd.do");
+			action = new MemberFindAccountPasswdService();
 			try {
 				actionCommand = action.execute(request, response);
 			} catch (Exception e) {

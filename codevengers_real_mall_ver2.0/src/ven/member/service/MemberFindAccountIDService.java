@@ -1,6 +1,5 @@
 package ven.member.service;
 
-import java.io.PrintWriter;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -17,7 +16,7 @@ import ven.shop.command.ActionCommand;
 import ven.shop.dao.MemberDAO;
 import ven.shop.model.MemberVO;
 
-public class MemberFindAccountService implements Action {
+public class MemberFindAccountIDService implements Action {
 
 	@Override
 	public ActionCommand execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -40,7 +39,7 @@ public class MemberFindAccountService implements Action {
 			if (result == false) {
 				System.out.println("계정을 찾을수없습니다.");				
 				actionCommand.setRedirect(false);
-				actionCommand.setPath("./member/member_find.jsp");
+				actionCommand.setPath("./member/member_find_id.jsp");
 				
 			}else {
 				System.out.println(memberVO.getMem_id());
@@ -55,7 +54,7 @@ public class MemberFindAccountService implements Action {
 				// mail server 설정
 				String host = "smtp.naver.com";
 				String user = "vividcello@naver.com"; // 자신의 네이버 계정
-				String password = "코드저스";// 자신의 네이버 패스워드
+				String password = "zheldwjtm123?";// 자신의 네이버 패스워드
 
 				// 메일 받을 주소
 				/* String to_email = m.getEmail(); */

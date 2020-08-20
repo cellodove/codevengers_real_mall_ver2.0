@@ -207,9 +207,9 @@ public class MemberDAO {
 			resultSet=preparedStatement.executeQuery();
 			
 			resultSet=preparedStatement.executeQuery();
-			// int result = preparedStatement.executeUpdate();
+			int result = preparedStatement.executeUpdate();
 			
-			if (resultSet==null) {
+			if (result==0) {
 				System.out.println("dao에 없는회원입니다.");
 				return false;
 			}else {

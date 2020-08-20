@@ -1,7 +1,5 @@
 package ven.member.service;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -40,17 +38,9 @@ public class MemberLoginCheckService implements Action {
 			actionCommand.setPath("./main/main.jsp");
 			
 		}else {
-			
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html; charset=UTF-8");
-			
-			PrintWriter printWriter = response.getWriter();
-			printWriter.println("<script type='text/javascript'>");
-			printWriter.println("alert('아이디나 비밀번호가 틀렸습니다.');");
-			printWriter.println("history.back();");
-			printWriter.println("</script>");
 
-			/* actionCommand.setPath("./main/member_login.jsp"); */
+
+			actionCommand.setPath("./member/member_login.jsp");
 			System.out.println("Login fail");
 		}
 		
