@@ -7,7 +7,6 @@
 <title>이메일 인증</title>
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript">
     $(document)
             .ready(

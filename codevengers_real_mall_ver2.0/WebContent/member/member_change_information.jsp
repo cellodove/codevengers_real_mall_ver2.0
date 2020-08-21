@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>회원정보수정</title>
 </head>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -201,31 +201,30 @@
                                                 return false;
                                                 
                                             } else {
-                                                alert("가입되었습니다");
-                                                alert("이메일 인증창으로 이동합니다.");
+                                                alert("회원수정되었습니다.");
                                             }
                                         });
+                        
                     });
 </script>
 
-
 <body>
-<form action="./MemberAdd.do" method="post" name="signupform">
+<form action="./MemberChangeInformation.do" method="post" name="signupform">
 <fieldset>
 <table>
-	<h1>회원가입</h1>
+	<h1>회원정보</h1>
 	
 			<tr>
                 <th>아이디</th>
                 <td>
-                    <input type="text" name="mem_id" id="id" size="12" maxlength="12" />
+                    <input type="text" name="mem_id" id="id" value="${mem_id}" size="12" maxlength="12" readonly="readonly" />
                 </td>
             </tr>
             
             <tr>
                 <th>비밀번호</th>
                 <td>
-                    <input type="password" name="mem_passwd" id="pwd" size="12" maxlength="12" />
+                    <input type="password" name="mem_passwd" id="pwd" value="${mem_passwd}" size="12" maxlength="12" />
                 </td>
             </tr>
             
@@ -239,23 +238,23 @@
            <tr>
                 <th>이름</th>
                 <td>
-                    <input type="text" name="mem_name" id="name" size="12" maxlength="12" />
+                    <input type="text" name="mem_name" id="name" value="${mem_name}" size="12" maxlength="12" />
                 </td>
             </tr>
             
             <tr>
                 <th>생일</th>
                 <td>
-                    <input type="date" name="mem_birth" id="mem_birth" id="mem_birth"size="8" maxlength="8" />
+                    <input type="date" name="mem_birth" id="mem_birth" value="${mem_birth}" size="8" maxlength="8" />
                 </td>
             </tr>
             
             <tr>
                 <th>전화번호</th>
                 <td>
-                    <input type="text" name="mem_tel1" id="tel1" size="3"maxlength="3" />- 
-                    <input type="text" name="mem_tel2" id="tel2"size="4" maxlength="4" />- 
-                    <input type="text" name="mem_tel3" id="tel3" size="4" maxlength="4" />
+                    <input type="text" name="mem_tel1" id="tel1" value="${mem_tel1}" size="3"maxlength="3" />- 
+                    <input type="text" name="mem_tel2" id="tel2" value="${mem_tel2}" size="4" maxlength="4" />- 
+                    <input type="text" name="mem_tel3" id="tel3" value="${mem_tel3}" size="4" maxlength="4" />
                 </td>
             </tr>
             
@@ -263,7 +262,7 @@
                 <th>우편번호</th>
                 <td>
             
-                	<input type="text" name="mem_zipcode" id="sample6_postcode" size="12" maxlength="12" placeholder="우편번호">
+                	<input type="text" name="mem_zipcode" id="sample6_postcode" value="${mem_zipcode}" size="12" maxlength="12" placeholder="우편번호">
                 	<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
                 </td>
             </tr>
@@ -274,8 +273,8 @@
                 </th>
                 <td>
                 	
-                    <input type="text" name="mem_address1" id="sample6_address" placeholder="주소" />
-                    <input type="text" name="mem_address2" id="sample6_detailAddress" placeholder="상세주소"/>
+                    <input type="text" name="mem_address1" id="sample6_address" value="${mem_address1}"/>
+                    <input type="text" name="mem_address2" id="sample6_detailAddress" value="${mem_address2}"/>
                     <input type="text" id="sample6_extraAddress" placeholder="참고항목">
                 </td>
             </tr>
@@ -291,7 +290,7 @@
             <tr>
                 <th>이메일</th>
                 <td>
-                    <input type="text" name="mem_email" id="email" size="30"maxlength="30" />
+                    <input type="text" name="mem_email" id="email" value="${mem_email}" size="30"maxlength="30" readonly="readonly" />
                 </td>
             </tr>
             
@@ -307,16 +306,40 @@
                 <td><input type="radio" name="mem_receive_sms" id="yess" value="yes">수신
                     <input type="radio" name="mem_receive_sms" id="noo" value="no">미수신
                 </td>
-            </tr></br>
+            </tr>
+            
+            <tr>
+                <th>포인트</th>
+                <td>
+                    <input type="text" value="${mem_point}" size="13"maxlength="13" readonly="readonly">
+                </td>
+            </tr>
+            
+            <tr>
+                <th>회원등급</th>
+                <td>
+                    <input type="text" value="${mem_grade}" size="13"maxlength="13" readonly="readonly">
+                </td>
+            </tr>
+            
+             <tr>
+                <th>가입일자</th>
+                <td>
+                    <input type="date" value="${mem_register_datetime}" size="13"maxlength="13" readonly="readonly">
+                </td>
+            </tr>
+            
             
             <tr>
                 <td colspan="2">
-                    <input type="submit" id="btn_join"  value="가입">
+                    <input type="submit" id="btn_join"  value="수정">
                     <input type="reset" id="btn_cancel" value="취소">
                 </td>
             </tr>
+            
 </table>
 </fieldset>
 </form>
+
 </body>
 </html>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ven.member.service.MemberAddService;
+import ven.member.service.MemberChangeInformationGoService;
 import ven.member.service.MemberChangeInformationService;
 import ven.member.service.MemberFindAccountIDService;
 import ven.member.service.MemberFindAccountPasswdService;
@@ -136,6 +137,15 @@ public class MemberFrontController extends HttpServlet {
 		}else if (pathURL.equals("/MemberMyInformation.do")) {
 			System.out.println("/MemberMyInformation.do");
 			action = new MemberMyInformationService();
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
+		}else if (pathURL.equals("/MemberChangeInformationGo.do")) {
+			System.out.println("/MemberChangeInformationGo.do");
+			action = new MemberChangeInformationGoService();
 			try {
 				actionCommand = action.execute(request, response);
 			} catch (Exception e) {

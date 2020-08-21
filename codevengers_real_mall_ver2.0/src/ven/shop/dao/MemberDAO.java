@@ -371,6 +371,63 @@ public class MemberDAO {
 		return false;
 		
 	}
+
+	public boolean memberInformationChange(MemberVO memberVO) {
+		System.out.println("memberInformationChange dao come");
+		String sql="";
+		int result = 0;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource)context.lookup("java:comp/env/jdbc");
+			connection=dataSource.getConnection();
+
+			sql = "update member set mem_passwd=?,mem_name=?,mem_birth=?,mem_tel1=?,mem_tel2=?,mem_tel3=?,mem_zipcode=?,mem_address1=?,mem_address2=?,mem_gender=?,mem_email=?,mem_receive_email=?,mem_receive_sms=?";
+			sql += " where mem_id=?";
+			
+			
+			
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, memberVO.getMem_passwd());
+			preparedStatement.setString(2, memberVO.getMem_name());
+			preparedStatement.setDate(3, memberVO.getMem_birth());
+			preparedStatement.setInt(4, memberVO.getMem_tel1());
+			preparedStatement.setInt(5, memberVO.getMem_tel2());
+			preparedStatement.setInt(6, memberVO.getMem_tel3());
+			preparedStatement.setInt(7, memberVO.getMem_zipcode());
+			preparedStatement.setString(8, memberVO.getMem_address1());
+			preparedStatement.setString(9, memberVO.getMem_address2());
+			preparedStatement.setString(10, memberVO.getMem_gender());
+			preparedStatement.setString(11, memberVO.getMem_email());
+			preparedStatement.setString(12, memberVO.getMem_receive_email());
+			preparedStatement.setString(13, memberVO.getMem_receive_sms());
+			preparedStatement.setString(14, memberVO.getMem_id());
+			
+			
+			result = preparedStatement.executeUpdate();
+			if (result==0) {
+				return false;
+			}else {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("memberInformationChange dao error");
+			e.printStackTrace();
+		}finally {
+			try {
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				System.out.println("memberInformationChange dao DB error");
+				e.printStackTrace();
+			}
+		}
+		return false;
+		
+	}
 	
 	
 	
