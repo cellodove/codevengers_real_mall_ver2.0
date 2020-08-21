@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ven.member.service.MemberAddService;
+import ven.member.service.MemberChangeInformationService;
 import ven.member.service.MemberFindAccountIDService;
 import ven.member.service.MemberFindAccountPasswdService;
 import ven.member.service.MemberLoginCheckService;
 import ven.member.service.MemberMailCodeCheckService;
 import ven.member.service.MemberMainService;
+import ven.member.service.MemberMyInformationService;
 import ven.member.service.MemberSendMailService;
 import ven.shop.action.Action;
 import ven.shop.command.ActionCommand;
@@ -125,6 +127,24 @@ public class MemberFrontController extends HttpServlet {
 		}else if (pathURL.equals("/MemberFindAccountPasswd.do")) {
 			System.out.println("MemberFindAccountPasswd.do");
 			action = new MemberFindAccountPasswdService();
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
+		}else if (pathURL.equals("/MemberMyInformation.do")) {
+			System.out.println("/MemberMyInformation.do");
+			action = new MemberMyInformationService();
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
+		}else if (pathURL.equals("/MemberChangeInformation.do")) {
+			System.out.println("/MemberChangeInformation.do");
+			action = new MemberChangeInformationService();
 			try {
 				actionCommand = action.execute(request, response);
 			} catch (Exception e) {

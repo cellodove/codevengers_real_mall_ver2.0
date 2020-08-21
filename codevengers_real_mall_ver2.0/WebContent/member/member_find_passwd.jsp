@@ -40,6 +40,7 @@
 
 <body>
 <form action="./MemberFindAccountPasswd.do" method="post" name="signupform"> 
+아이디:&nbsp;<input type="text" name="mem_id" id="mem_id" size="8" maxlength="8" required="required"/><br>
 이름:&nbsp;<input type="text" name="mem_name" id="mem_name" size="8" maxlength="8" required="required"/><br>
 생일:&nbsp;<input type="text" name="mem_birth" id="mem_birth" id="mem_birth"size="8" maxlength="8" required="required"/><br><br>
 <input type="submit" id="btn_join"  value="확인">

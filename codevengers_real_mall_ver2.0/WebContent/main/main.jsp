@@ -5,16 +5,20 @@
 	String login_check = "";
 	String member_register_check = "";
 	String login_check1 = "";
+	String login_ok = "";
 	
 	if(mem_id == null){  //로그인이 아니라면
 		login_check = "location.href='./MemberLogin.do'";
 		login_check1="로그인";
+		login_ok = "";
 		
 	} else {  //로그인이라면
 		login_check = "location.href='./MemberLogout.do'";
 		login_check1="로그아웃";
+		login_ok = mem_id + "님" + "환영합니다.";
 		
 	}
+	session.setAttribute("mem_id", mem_id);
 %>
  
 <!DOCTYPE html>
@@ -38,6 +42,7 @@ function formCK(){
 </head>
 <body>
 
+<%= login_ok %>
 <form action="./ItemMain.no" method="post">
 <input type="submit" value="상품목록">
 </form>

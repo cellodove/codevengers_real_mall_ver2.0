@@ -187,8 +187,11 @@ public class MemberDAO {
 		return false; 
 	}
 
-	public boolean memberFindNameBirth(MemberVO memberVO) {
-		System.out.println("memberFindNameBirth dao come");
+	public boolean memberFindNameBirthID(MemberVO memberVO) {
+		System.out.println("memberFindNameBirthID dao come");
+		System.out.println(memberVO.getMem_name());
+		System.out.println(memberVO.getMem_birth());
+		
 		String sql="";
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -200,27 +203,87 @@ public class MemberDAO {
 			connection=dataSource.getConnection();
 			
 			//회원 번호의 최댓값 조회 글 등록할때 번호 순차적으로 지정
-			sql="select mem_id, mem_passwd, mem_email from member where mem_name = ? and mem_birth = ? ";
+			sql="select mem_id, mem_email from member where mem_name = ? and mem_birth = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, memberVO.getMem_name());
 			preparedStatement.setDate(2, memberVO.getMem_birth());
-			resultSet=preparedStatement.executeQuery();
+				
 			
-			resultSet=preparedStatement.executeQuery();
 			int result = preparedStatement.executeUpdate();
+			resultSet=preparedStatement.executeQuery();
 			
 			if (result==0) {
 				System.out.println("dao에 없는회원입니다.");
 				return false;
 			}else {
-				System.out.println("아이디 비번 승인 dao");
+				System.out.println("아이디 비번 승인 dao ID");
 				
 				while (resultSet.next()) {
 					System.out.println(resultSet.getString("mem_id"));
-					System.out.println(resultSet.getString("mem_passwd"));
 					System.out.println(resultSet.getString("mem_email"));
 					
 					memberVO.setMem_id(resultSet.getString("mem_id"));
+					memberVO.setMem_email(resultSet.getString("mem_email"));
+				}
+				return true;
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("memberFindNameBirth id dao error");
+			e.printStackTrace();
+		}finally {
+			try {
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				System.out.println("memberFindNameBirth id dao DB error");
+				e.printStackTrace();
+			}
+		}
+		return false; 
+
+	}
+	
+	public boolean memberFindNameBirthPasswd(MemberVO memberVO) {
+		System.out.println("memberFindNameBirth dao come");
+		System.out.println(memberVO.getMem_id());
+		System.out.println(memberVO.getMem_name());
+		System.out.println(memberVO.getMem_birth());
+		
+		
+		String sql="";
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource)context.lookup("java:comp/env/jdbc");
+			connection=dataSource.getConnection();
+			
+			//회원 번호의 최댓값 조회 글 등록할때 번호 순차적으로 지정
+			sql="select mem_passwd, mem_email from member where mem_id = ? and mem_name = ? and mem_birth = ? ";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, memberVO.getMem_id());
+			preparedStatement.setString(2, memberVO.getMem_name());
+			preparedStatement.setDate(3, memberVO.getMem_birth());
+			
+			
+			int result = preparedStatement.executeUpdate();
+			resultSet=preparedStatement.executeQuery();
+			
+			if (result==0) {
+				System.out.println("dao에 없는회원입니다.");
+				return false;
+			}else {
+				System.out.println("아이디 비번 승인 dao Passwd");
+				
+				while (resultSet.next()) {
+					System.out.println(resultSet.getString("mem_passwd"));
+					System.out.println(resultSet.getString("mem_email"));
+					
 					memberVO.setMem_passwd(resultSet.getString("mem_passwd"));
 					memberVO.setMem_email(resultSet.getString("mem_email"));
 				}
@@ -229,7 +292,7 @@ public class MemberDAO {
 			
 			
 		} catch (Exception e) {
-			System.out.println("memberFindNameBirth dao error");
+			System.out.println("memberFindNameBirth Passwd dao error");
 			e.printStackTrace();
 		}finally {
 			try {
@@ -237,7 +300,7 @@ public class MemberDAO {
 				preparedStatement.close();
 				connection.close();
 			} catch (SQLException e) {
-				System.out.println("memberFindNameBirth dao DB error");
+				System.out.println("memberFindNameBirth passwd dao DB error");
 				e.printStackTrace();
 			}
 		}
@@ -245,6 +308,69 @@ public class MemberDAO {
 
 	}
 
+	public boolean memberInfoCall(MemberVO memberVO) {
+		System.out.println("memberInfoCall dao");
+		String sql="";
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource)context.lookup("java:comp/env/jdbc");
+			connection=dataSource.getConnection();
+
+			
+			sql="select mem_id,mem_passwd,mem_name,mem_birth,mem_tel1,mem_tel2,mem_tel3,mem_zipcode,mem_address1,mem_address2,mem_gender,mem_email,mem_email_ck,mem_grade,mem_point,mem_receive_email,mem_receive_sms,mem_register_datetime from member";
+			sql+=" where mem_id = ?";
+			
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, memberVO.getMem_id());
+			
+			resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+				memberVO.setMem_id(resultSet.getString("mem_id"));
+				memberVO.setMem_passwd(resultSet.getString("mem_passwd"));
+				memberVO.setMem_name(resultSet.getString("mem_name"));
+				memberVO.setMem_birth(resultSet.getDate("mem_birth"));
+				memberVO.setMem_tel1(resultSet.getInt("mem_tel1"));
+				memberVO.setMem_tel2(resultSet.getInt("mem_tel2"));
+				memberVO.setMem_tel3(resultSet.getInt("mem_tel3"));
+				memberVO.setMem_zipcode(resultSet.getInt("mem_zipcode"));
+				memberVO.setMem_address1(resultSet.getString("mem_address1"));
+				memberVO.setMem_address2(resultSet.getString("mem_address2"));
+				memberVO.setMem_gender(resultSet.getString("mem_gender"));
+				memberVO.setMem_email(resultSet.getString("mem_email"));
+				memberVO.setMem_email_ck(resultSet.getString("mem_email_ck"));
+				memberVO.setMem_grade(resultSet.getString("mem_grade"));
+				memberVO.setMem_point(resultSet.getInt("mem_point"));
+				memberVO.setMem_receive_email(resultSet.getString("mem_receive_email"));
+				memberVO.setMem_receive_sms(resultSet.getString("mem_receive_sms"));
+				memberVO.setMem_register_datetime(resultSet.getDate("mem_register_datetime"));
+																	
+				
+				System.out.println("dao"+" "+resultSet.getDate("mem_register_datetime"));
+				
+			}
+			return true;
+		} catch (Exception e) {
+			System.out.println("memberInfo dao error");
+			e.printStackTrace();
+		}finally {
+			try {
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				System.out.println("memberInfo dao db error");
+				e.printStackTrace();
+			}
+		}
+		return false;
+		
+	}
 	
 	
 	

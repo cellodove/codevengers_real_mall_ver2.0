@@ -22,7 +22,7 @@ public class MemberFindAccountIDService implements Action {
 	public ActionCommand execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		MemberVO memberVO = new MemberVO();
 		MemberDAO memberDAO = new MemberDAO();
-		System.out.println("MemberFindAccountService Come");
+		System.out.println("MemberFindAccountService id Come");
 		
 		
 		
@@ -31,10 +31,13 @@ public class MemberFindAccountIDService implements Action {
 		
 		
 		try {
+			System.out.println(request.getParameter("mem_name"));
+			System.out.println(request.getParameter("mem_birth"));
+		
 			memberVO.setMem_name(request.getParameter("mem_name"));
 			memberVO.setMem_birth(java.sql.Date.valueOf(request.getParameter("mem_birth")));
 			
-			result = memberDAO.memberFindNameBirth(memberVO);
+			result = memberDAO.memberFindNameBirthID(memberVO);
 			
 			if (result == false) {
 				System.out.println("계정을 찾을수없습니다.");				
@@ -43,12 +46,10 @@ public class MemberFindAccountIDService implements Action {
 				
 			}else {
 				System.out.println(memberVO.getMem_id());
-				System.out.println(memberVO.getMem_passwd());
 				System.out.println(memberVO.getMem_email());
 				
 				
-				String mem_id = memberVO.getMem_id();
-				String mem_passwd = memberVO.getMem_passwd();			
+				String mem_id = memberVO.getMem_id();		
 				String mem_email = memberVO.getMem_email();
 
 				// mail server 설정
@@ -84,9 +85,9 @@ public class MemberFindAccountIDService implements Action {
 					msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email));
 
 					// 메일 제목
-					msg.setSubject("안녕하세요  코딩져스 회원 아이디와 비밀번호입니다.");
+					msg.setSubject("안녕하세요  코딩져스 회원 아이디입니다.");
 					// 메일 내용
-					msg.setText("아이디는 :" + mem_id + " " + "비밀번호는 :" + mem_passwd + "입니다.");
+					msg.setText("아이디는 :" + mem_id + " " + "입니다.");
 					Transport.send(msg);
 					System.out.println("이메일 전송");
 					
