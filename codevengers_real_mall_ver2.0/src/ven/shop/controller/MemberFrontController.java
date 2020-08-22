@@ -164,7 +164,7 @@ public class MemberFrontController extends HttpServlet {
 	
 		}else if(pathURL.equals("/MemberDeleteGo.do")) {
 			actionCommand = new ActionCommand();
-			System.out.println("memberDelete.do");
+			System.out.println("memberDeleteGo.do");
 			String mem_id = request.getParameter("mem_id");
 			request.setAttribute("mem_id", mem_id);
 			actionCommand.setRedirect(false);

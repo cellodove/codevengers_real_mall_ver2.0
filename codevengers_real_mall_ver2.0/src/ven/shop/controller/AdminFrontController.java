@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ven.admin.service.AdminLoginCheckService;
+import ven.member.service.MemberLoginCheckService;
 import ven.shop.action.Action;
 import ven.shop.command.ActionCommand;
 
@@ -31,7 +33,29 @@ public class AdminFrontController extends HttpServlet {
 			actionCommand.setPath("./admin/admin_login.jsp");
 			System.out.println("AdminLogin.ko");
 			
+		} else if(pathURL.equals("/AdminLoginCheck.ko")){
+			action = new AdminLoginCheckService();
+			System.out.println("AdminLoginCheck.ko");
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

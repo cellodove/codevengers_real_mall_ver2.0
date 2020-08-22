@@ -440,20 +440,18 @@ public class MemberDAO {
 			preparedStatement.setString(2, memberVO.getMem_passwd());
 			
 			result = preparedStatement.executeUpdate();
-			
-			System.out.println(preparedStatement.executeUpdate());
 
-			if (result == 0) {
-				System.out.println("DB비밀번호가 다릅니다.");
-				return false;
-			} else {
-				
+			if (result == 1) {
 				System.out.println("DB회원삭제되었습니다.");
+				System.out.println("dao 삭제성공");
 				return true;
+			}else {
+				System.out.println("DB비밀번호가 다릅니다.");
+				System.out.println("dao 삭제실패");
+				return false;
 			}
-
 		} catch (Exception e) {
-			System.out.println("memberDelete dao");
+			System.out.println("memberDelete dao error");
 			e.printStackTrace();
 		} finally {
 			try {

@@ -16,7 +16,8 @@ public class MemberDeleteService implements Action {
 		actionCommand.setRedirect(false);
 		
 		MemberDAO memberDAO = new MemberDAO();
-		System.out.println("MemberDeleteGoService");
+		
+		System.out.println("MemberDeleteService");
 		String mem_id = request.getParameter("mem_id");
 		String mem_passwd = request.getParameter("mem_passwd");
 		
@@ -25,19 +26,21 @@ public class MemberDeleteService implements Action {
 		memberVO.setMem_id(mem_id);
 		memberVO.setMem_passwd(mem_passwd);
 		
-		memberDAO.memberDelete(memberVO);
+		boolean idPassCK=memberDAO.memberDelete(memberVO);
 
-		System.out.println(memberDAO.memberDelete(memberVO));
 		
-		if (memberDAO.memberDelete(memberVO)==false) {
+		if (idPassCK==false) {
 			System.out.println("삭제실패");
 			actionCommand.setPath("./member/member_delete.jsp");
+			System.out.println("서비스 삭제실패");
+			
 			
 		}else {
 			System.out.println("회원삭제");
 			actionCommand.setPath("./main/main.jsp");
+			System.out.println("서비스 삭제성공");
+			
 		}
-		
 		return actionCommand;
 
 	}
