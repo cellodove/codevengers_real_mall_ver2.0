@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import ven.member.service.MemberAddService;
 import ven.member.service.MemberChangeInformationGoService;
 import ven.member.service.MemberChangeInformationService;
+import ven.member.service.MemberDeleteService;
 import ven.member.service.MemberFindAccountIDService;
 import ven.member.service.MemberFindAccountPasswdService;
 import ven.member.service.MemberLoginCheckService;
@@ -161,6 +162,23 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 	
+		}else if(pathURL.equals("/MemberDeleteGo.do")) {
+			actionCommand = new ActionCommand();
+			System.out.println("memberDelete.do");
+			String mem_id = request.getParameter("mem_id");
+			request.setAttribute("mem_id", mem_id);
+			actionCommand.setRedirect(false);
+			actionCommand.setPath("./member/member_delete.jsp");
+			
+		}else if(pathURL.equals("/MemberDelete.do")) {
+			System.out.println("MemberDelete.do");
+			action = new MemberDeleteService();
+
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		

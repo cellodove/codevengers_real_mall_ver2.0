@@ -100,7 +100,7 @@
 						<a href="./MemberChangeInformationGo.do?mem_id=<c:out value="${mem_id}"/>">
 							<button type="button" class="btnOk">수정</button>
 						</a> 
-						<a href="./MemberDelete.do?mem_id=<c:out value="${mem_id}"/>">
+						<a href="./MemberDeleteGo.do?mem_id=<c:out value="${mem_id}"/>">
 							<button type="button" class="btnOk">탈퇴</button>
 						</a>
 						<button type="button" value="button"onclick="location.href='./MemberMain.do'" class="btnOk">메인</button>
