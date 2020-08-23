@@ -73,7 +73,7 @@
 							<td colspan="5"><c:choose>
 									<c:when test="${page<=1}">[이전]&nbsp;</c:when>
 									<c:otherwise>
-										<a href="./ItemManList.no?page=<c:out value="${page-1}"/>">[이전]</a>&nbsp;
+										<a href="./ItemWoman.no?page=<c:out value="${page-1}"/>">[이전]</a>&nbsp;
 									</c:otherwise>
 								</c:choose> <c:forEach var="start" begin="${startpage}" end="${endpage}"
 									step="1">
@@ -82,7 +82,7 @@
 												value="${start}" />]
 										</c:when>
 										<c:otherwise>
-											<a href="./ItemManList.no?page=<c:out value="${start}"/>">[<c:out
+											<a href="./ItemWoman.no?page=<c:out value="${start}"/>">[<c:out
 													value="${start}" />]
 											</a>&nbsp;
 										</c:otherwise>
@@ -90,7 +90,7 @@
 								</c:forEach> <c:choose>
 									<c:when test="${page>=maxPage}">[다음]</c:when>
 									<c:otherwise>
-										<a href="./ItemManList.no?page=<c:out value="${page+1}"/>">[다음]</a>
+										<a href="./ItemWoman.no?page=<c:out value="${page+1}"/>">[다음]</a>
 									</c:otherwise>
 								</c:choose></td>
 						</tr>

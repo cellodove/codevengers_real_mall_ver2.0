@@ -7,10 +7,12 @@
 <title>관리자 로그인</title>
 </head>
 <body>
-<form action="./AdminLoginCheck.ko">
-관리자 아이디<input type="text" name="mem_id" >
-관리자비밀번호<input type="text" name="mem_passwd" >
 
+<form action="./AdminLoginCheck.ko">
+<h1>관리자</h1>
+아이디<input type="text" name="mem_id" ><br>
+비밀번호<input type="password" name="mem_passwd" ><br>
+<input type="submit" value="로그인">
 </form>
 
 </body>

@@ -78,6 +78,7 @@ public class ItemDAO {
 			String sql = "select * from(select rownum rnum, item_num, item_name, item_type,item_gender,item_price,item_picture";
 			sql+=" from (select * from mall_item where item_gender = 'man'))";
 			sql+="where rnum>=? and rnum<=?";
+			
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, startrow);
 			preparedStatement.setInt(2, endrow);

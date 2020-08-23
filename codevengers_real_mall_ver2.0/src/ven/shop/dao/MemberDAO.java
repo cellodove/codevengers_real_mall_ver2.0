@@ -56,7 +56,7 @@ public class MemberDAO {
 				return true;
 			}
 		} catch (Exception e) {
-
+			System.out.println("loginCheck DAO error");
 			e.printStackTrace();
 
 		} finally {
@@ -65,6 +65,7 @@ public class MemberDAO {
 				preparedStatement.close();
 				connection.close();
 			} catch (SQLException e) {
+				System.out.println("loginCheck DAO DB error");
 				e.printStackTrace();
 			}
 		}
@@ -106,6 +107,7 @@ public class MemberDAO {
 			sql += " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate,?,?,?)";
 
 			preparedStatement = connection.prepareStatement(sql);
+			
 			preparedStatement.setInt(1, mem_num);
 			preparedStatement.setString(2, memberVO.getMem_id());
 			preparedStatement.setString(3, memberVO.getMem_passwd());
