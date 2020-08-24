@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import ven.shop.action.Action;
 import ven.shop.command.ActionCommand;
 import ven.shop.dao.AdminDAO;
-import ven.shop.dao.MemberDAO;
 import ven.shop.model.MemberVO;
 
 public class GoAdminMemberChangeInformationService implements Action {
@@ -24,8 +23,9 @@ public class GoAdminMemberChangeInformationService implements Action {
 		System.out.println(request.getParameter("mem_id"));
 		
 		memberVO.setMem_id(mem_id);
-		memberDAO.memberInfoCall(memberVO);
+		adminDAO.adminMemberInfoCall(memberVO);
 		
+		mem_id=memberVO.getMem_id();
 		String mem_passwd = memberVO.getMem_passwd();
 		String mem_name = memberVO.getMem_name();
 		Date mem_birth = memberVO.getMem_birth();
@@ -43,6 +43,9 @@ public class GoAdminMemberChangeInformationService implements Action {
 		String mem_receive_email = memberVO.getMem_receive_email();
 		String mem_receive_sms = memberVO.getMem_receive_sms();
 		Date mem_register_datetime = memberVO.getMem_register_datetime();
+		String mem_adminmemo = memberVO.getMem_adminmemo();
+		String mem_group = memberVO.getMem_group();
+		String mem_manager = memberVO.getMem_manager();
 		
 		request.setAttribute("mem_id", mem_id);
 		request.setAttribute("mem_passwd", mem_passwd);
@@ -62,6 +65,10 @@ public class GoAdminMemberChangeInformationService implements Action {
 		request.setAttribute("mem_receive_email", mem_receive_email);
 		request.setAttribute("mem_receive_sms", mem_receive_sms);
 		request.setAttribute("mem_register_datetime", mem_register_datetime);
+		request.setAttribute("mem_adminmemo", mem_adminmemo);
+		request.setAttribute("mem_group", mem_group);
+		request.setAttribute("mem_manager", mem_manager);
+		
 		System.out.println(mem_register_datetime);
 		
 		

@@ -71,6 +71,15 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		} else if(pathURL.equals("/AdminMemberChangeInformation.ko")){
+			action = new GoAdminMemberChangeInformationService();
+			System.out.println("GoAdminMemberChangeInformation.ko");
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		

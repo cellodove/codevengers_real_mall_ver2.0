@@ -41,6 +41,9 @@ public class MemberChangeInformationGoService implements Action {
 		String mem_receive_email = memberVO.getMem_receive_email();
 		String mem_receive_sms = memberVO.getMem_receive_sms();
 		Date mem_register_datetime = memberVO.getMem_register_datetime();
+		String mem_adminmemo = memberVO.getMem_adminmemo();
+		String mem_group = memberVO.getMem_group();
+		String mem_manager = memberVO.getMem_manager();
 		
 		request.setAttribute("mem_id", mem_id);
 		request.setAttribute("mem_passwd", mem_passwd);
@@ -60,6 +63,11 @@ public class MemberChangeInformationGoService implements Action {
 		request.setAttribute("mem_receive_email", mem_receive_email);
 		request.setAttribute("mem_receive_sms", mem_receive_sms);
 		request.setAttribute("mem_register_datetime", mem_register_datetime);
+		request.setAttribute("mem_adminmemo", mem_adminmemo);
+		request.setAttribute("mem_group", mem_group);
+		request.setAttribute("mem_manager", mem_manager);
+		
+		
 		System.out.println(mem_register_datetime);
 		
 		
@@ -67,7 +75,7 @@ public class MemberChangeInformationGoService implements Action {
 		//리다이렉트안하니깐 포워드로하고
 		actionCommand.setRedirect(false);
 		//글목록 페이지로 이동한다.
-		actionCommand.setPath("./member/member_change_information.jsp");
+		actionCommand.setPath("./admin/admin_member_change_information.jsp");
 		//저 두개내용을 리턴해준다.
 		return actionCommand;
 	}
