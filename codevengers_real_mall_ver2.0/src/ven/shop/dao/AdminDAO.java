@@ -166,5 +166,77 @@ System.out.println("getManList dao come");
 		return i;
 	}
 
+	
+	public MemberVO getMemberDetail(String mem_id) {
+		System.out.println("getMemberDetail dao come");
+		
+		MemberVO memberVO = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			Context context = new InitialContext( );
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection( );
+			String sql = "select * from member where mem_id = ?";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, mem_id);
+			resultSet = preparedStatement.executeQuery( );
+			if (resultSet.next()) {
+				
+				memberVO = new MemberVO();
+				memberVO.setMem_num(resultSet.getInt("mem_num"));
+				memberVO.setMem_id(resultSet.getString("mem_id"));
+				memberVO.setMem_passwd(resultSet.getString("mem_passwd"));
+				memberVO.setMem_name(resultSet.getString("mem_name"));
+				memberVO.setMem_birth(resultSet.getDate("mem_birth"));
+				memberVO.setMem_tel1(resultSet.getInt("mem_tel1"));
+				memberVO.setMem_tel2(resultSet.getInt("mem_tel2"));
+				memberVO.setMem_tel3(resultSet.getInt("mem_tel3"));
+				memberVO.setMem_zipcode(resultSet.getInt("mem_zipcode"));
+				memberVO.setMem_address1(resultSet.getString("mem_address1"));
+				memberVO.setMem_address2(resultSet.getString("mem_address2"));
+				memberVO.setMem_gender(resultSet.getString("mem_gender"));
+				memberVO.setMem_email(resultSet.getString("mem_email"));
+				memberVO.setMem_email_ck(resultSet.getString("mem_email_ck"));
+				memberVO.setMem_grade(resultSet.getString("mem_grade"));
+				memberVO.setMem_point(resultSet.getInt("mem_point"));
+				memberVO.setMem_receive_email(resultSet.getString("mem_receive_email"));
+				memberVO.setMem_receive_sms(resultSet.getString("mem_receive_sms"));
+				memberVO.setMem_register_datetime(resultSet.getDate("mem_register_datetime"));
+				memberVO.setMem_adminmemo(resultSet.getString("mem_adminmemo"));
+				memberVO.setMem_group(resultSet.getString("mem_group"));
+				memberVO.setMem_manager(resultSet.getString("mem_manager"));
+				
+	}
+			return memberVO;
+		} catch (Exception e) {
+			System.out.println("getMemberDetail dao Err");
+			e.printStackTrace();
+		} finally {
+			try {
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				System.out.println("getMemberDetail dao DB Err");
+				e.printStackTrace();
+			}
+		}
+		return null;	
+	}
 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

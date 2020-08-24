@@ -33,9 +33,12 @@
 				<c:forEach var="member" items="${memberList}">
 					<tbody>
 						<tr>
-							<td><c:out value="${member.mem_num}" /></td>
 							<td>
-							<a href="./MemberDetail.ko?mem_num=<c:out value="${member.mem_num}"/>">
+							<c:out value="${member.mem_num}" />
+							</td>
+							
+							<td>
+							<a href="./MemberDetail.ko?mem_id=<c:out value="${member.mem_id}"/>">
 								<c:out value="${member.mem_id}" />
 							</a>
 							</td>

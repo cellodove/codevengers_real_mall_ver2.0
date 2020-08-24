@@ -38,7 +38,7 @@ public class MemberManagementService implements Action {
 		request.setAttribute("memberList", memberList);
 		ActionCommand actionCommand = new ActionCommand();
 		actionCommand.setRedirect(false);
-		actionCommand.setPath("./admin/membermanagement.jsp");
+		actionCommand.setPath("./admin/member_management.jsp");
 		return actionCommand;
 	}
 
