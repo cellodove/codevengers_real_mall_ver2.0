@@ -6,6 +6,19 @@
 <meta charset="UTF-8">
 <title>회원상세</title>
 </head>
+<script type="text/javascript"></script>
+<script>
+
+function delete_button(){
+	if (confirm("정말 삭제하시겠습니까??") == true){ 
+    	document.form.submit();
+	}else{   
+    	return false;
+	}
+}
+</script>
+
+
 <body>
 <div >
 		<section >
@@ -114,9 +127,11 @@
 						<a href="./GoAdminMemberChangeInformation.ko?mem_id=<c:out value="${memberVO.mem_id}"/>">
 							<button type="button">수정</button>
 						</a> 
-						<a href="./MemberDeleteGo.ko?mem_id=<c:out value="${memberVO.mem_id}"/>">
-							<button type="button">탈퇴</button>
+						
+						<a href="./ADMemberDelete.ko?mem_id=<c:out value="${memberVO.mem_id}"/>" onclick="return confirm('정말로 삭제하시겠습니까?');">
+							<button type="button">삭제</button>
 						</a>
+						
 						<button type="button" value="button"onclick="location.href='./MemberManagement.ko'">메인</button>
 					</div>
 				</fieldset>

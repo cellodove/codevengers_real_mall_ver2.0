@@ -225,14 +225,14 @@
             <tr>
                 <th>비밀번호</th>
                 <td>
-                    <input type="password" name="mem_passwd" id="pwd" value="${mem_passwd}" size="12" maxlength="12" />
+                    <input type="text" name="mem_passwd" id="pwd" value="${mem_passwd}" size="12" maxlength="12" />
                 </td>
             </tr>
             
             <tr>
                 <th>비밀번호확인</th>
                 <td>
-                    <input type="password"  id="pwd2" size="12" maxlength="12" />
+                    <input type="text"  id="pwd2" size="12" maxlength="12" />
                 </td>
             </tr>
             
@@ -312,14 +312,14 @@
             <tr>
                 <th>포인트</th>
                 <td>
-                    <input type="text" value="${mem_point}" size="13"maxlength="13" readonly="readonly">
+                    <input type="text" name="mem_point" value="${mem_point}" size="13"maxlength="13" readonly="readonly">
                 </td>
             </tr>
             
             <tr>
                 <th>회원등급</th>
                 <td>
-                    <input type="text" value="${mem_grade}" size="13"maxlength="13" readonly="readonly">
+                    <input type="text" name="mem_grade" value="${mem_grade}" size="13"maxlength="13" readonly="readonly">
                 </td>
             </tr>
             
@@ -333,7 +333,7 @@
             <tr>
                 <th>관리자 메모</th>
                 <td>
-                	<textarea rows="15" cols="15"  ${mem_adminmemo} name="mem_adminmemo"></textarea>
+                	<textarea rows="15" cols="15" name="mem_adminmemo">${mem_adminmemo}</textarea>
                 </td>
             </tr>
             
@@ -347,7 +347,7 @@
              <tr>
                 <th>매니저여부</th>
                 <td>
-                    <input type="text"value="${mem_manager}" size="12" maxlength="12" />
+                    <input type="text" name="mem_manager" value="${mem_manager}" size="12" maxlength="12" />
                 </td>
             </tr>
             
@@ -359,7 +359,6 @@
             <tr>
                 <td colspan="2">
                     <input type="submit" id="btn_join"  value="수정">
-                    <input type="reset" id="btn_cancel" value="취소">
                 </td>
             </tr>
             

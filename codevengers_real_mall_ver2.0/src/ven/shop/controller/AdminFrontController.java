@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ven.admin.service.ADMemberDeleteService;
 import ven.admin.service.AdminLoginCheckService;
+import ven.admin.service.AdminMemberChangeInformationService;
 import ven.admin.service.GoAdminMemberChangeInformationService;
+import ven.admin.service.GoItemManagementService;
 import ven.admin.service.MemberDetailService;
 import ven.admin.service.MemberManagementService;
 import ven.shop.action.Action;
@@ -72,8 +75,26 @@ public class AdminFrontController extends HttpServlet {
 			}
 			
 		} else if(pathURL.equals("/AdminMemberChangeInformation.ko")){
-			action = new GoAdminMemberChangeInformationService();
-			System.out.println("GoAdminMemberChangeInformation.ko");
+			action = new AdminMemberChangeInformationService();
+			System.out.println("AdminMemberChangeInformation.ko");
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(pathURL.equals("/ADMemberDelete.ko")){
+			action = new ADMemberDeleteService();
+			System.out.println("ADMemberDelete.ko");
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(pathURL.equals("/GoItemManagement.ko")){
+			action = new GoItemManagementService();
+			System.out.println("GoItemManagement.ko");
 			try {
 				actionCommand = action.execute(request, response);
 			} catch (Exception e) {

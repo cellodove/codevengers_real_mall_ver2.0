@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import ven.shop.model.MallItemVO;
 import ven.shop.model.MemberVO;
 
 public class AdminDAO {
@@ -290,6 +291,163 @@ System.out.println("getManList dao come");
 		}
 		return false;
 		
+	}
+
+	public boolean ADmemberInformationChange(MemberVO memberVO) {
+		System.out.println("ADmemberInformationChange dao come");
+		String sql = "";
+		int result = 0;
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection();
+
+			sql = "update member set mem_passwd=?,mem_name=?,mem_birth=?,mem_tel1=?,mem_tel2=?,mem_tel3=?,mem_zipcode=?,mem_address1=?,mem_address2=?,mem_gender=?,mem_email=?,mem_receive_email=?,mem_receive_sms=?,mem_point=?,mem_grade=?,mem_adminmemo=?,mem_manager=?";
+			sql += " where mem_id=?";
+
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, memberVO.getMem_passwd());
+			preparedStatement.setString(2, memberVO.getMem_name());
+			preparedStatement.setDate(3, memberVO.getMem_birth());
+			preparedStatement.setInt(4, memberVO.getMem_tel1());
+			preparedStatement.setInt(5, memberVO.getMem_tel2());
+			preparedStatement.setInt(6, memberVO.getMem_tel3());
+			preparedStatement.setInt(7, memberVO.getMem_zipcode());
+			preparedStatement.setString(8, memberVO.getMem_address1());
+			preparedStatement.setString(9, memberVO.getMem_address2());
+			preparedStatement.setString(10, memberVO.getMem_gender());
+			preparedStatement.setString(11, memberVO.getMem_email());
+			preparedStatement.setString(12, memberVO.getMem_receive_email());
+			preparedStatement.setString(13, memberVO.getMem_receive_sms());
+			preparedStatement.setInt(14, memberVO.getMem_point());
+			preparedStatement.setString(15, memberVO.getMem_grade());
+			preparedStatement.setString(16, memberVO.getMem_adminmemo());
+			preparedStatement.setString(17,memberVO.getMem_manager());
+			
+			preparedStatement.setString(18, memberVO.getMem_id());
+
+			result = preparedStatement.executeUpdate();
+			if (result == 0) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("ADmemberInformationChange dao error");
+			e.printStackTrace();
+		} finally {
+			try {
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				System.out.println("ADmemberInformationChange dao DB error");
+				e.printStackTrace();
+			}
+		}
+		return false;
+		
+	}
+
+	public boolean ADmemberDelete(MemberVO memberVO) {
+		System.out.println("ADmemberDelete dao come");
+		String sql = "";
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		int result = 0;
+
+		System.out.println(memberVO.getMem_id());
+
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection();
+
+			sql = "delete from member where mem_id = ?";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, memberVO.getMem_id());
+			
+			result = preparedStatement.executeUpdate();
+
+			if (result == 1) {
+				System.out.println("DB회원삭제되었습니다.");
+				System.out.println("dao 삭제성공");
+				return true;
+			}else {
+				System.out.println("DB비밀번호가 다릅니다.");
+				System.out.println("dao 삭제실패");
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println("ADmemberDelete dao error");
+			e.printStackTrace();
+		} finally {
+			try {
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				System.out.println("ADmemberDelete dao DB error");
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
+	public List<?> getItemList(int page, int limit) {
+		System.out.println("getItemList dao come");
+		
+		List<MallItemVO> list = new ArrayList<MallItemVO>();
+		int startrow = (page - 1) * 10 + 1;
+		int endrow = startrow + limit - 1;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection();
+			String sql = "select * from(select rownum rnum, item_num, item_name, item_type,item_gender,item_price,item_remain,item_allnumber,item_picture ";
+			sql+="(where rnum>=? and rnum<=?))";
+			
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, startrow);
+			preparedStatement.setInt(2, endrow);
+			resultSet = preparedStatement.executeQuery( );
+			
+			while (resultSet.next()) {
+				MallItemVO mallItemVO = new MallItemVO();
+				
+				mallItemVO.setItem_num(resultSet.getInt("item_num"));
+				mallItemVO.setItem_name(resultSet.getString("item_name"));
+				mallItemVO.setItem_type(resultSet.getString("item_type"));
+				mallItemVO.setItem_gender(resultSet.getString("item_gender"));
+				mallItemVO.setItem_price(resultSet.getInt("item_price"));
+				mallItemVO.setItem_remain(resultSet.getInt("item_remain"));
+				mallItemVO.setItem_allnumber(resultSet.getInt("item_allnumber"));
+				mallItemVO.setItem_picture(resultSet.getString("item_picture"));
+				list.add(mallItemVO);
+			}
+			return list;
+		} catch (Exception e) {
+			System.out.println("getItemList dao Err");
+			e.printStackTrace();
+		}finally {
+			try {
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				System.out.println("getItemList dao DB Err");
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 
 
