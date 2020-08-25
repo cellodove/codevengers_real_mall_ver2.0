@@ -38,7 +38,7 @@ public class GoItemManagementService implements Action {
 		request.setAttribute("itemList", itemList);
 		ActionCommand actionCommand = new ActionCommand();
 		actionCommand.setRedirect(false);
-		actionCommand.setPath("./admin/member_management.jsp");
+		actionCommand.setPath("./admin/item_management.jsp");
 		return actionCommand;
 	}
 

@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ven.admin.service.ADItemDeleteService;
+import ven.admin.service.ADItemDetailService;
 import ven.admin.service.ADMemberDeleteService;
 import ven.admin.service.AdminLoginCheckService;
 import ven.admin.service.AdminMemberChangeInformationService;
 import ven.admin.service.GoAdminMemberChangeInformationService;
 import ven.admin.service.GoItemManagementService;
+import ven.admin.service.ItemAddService;
 import ven.admin.service.MemberDetailService;
 import ven.admin.service.MemberManagementService;
 import ven.shop.action.Action;
@@ -95,6 +98,39 @@ public class AdminFrontController extends HttpServlet {
 		} else if(pathURL.equals("/GoItemManagement.ko")){
 			action = new GoItemManagementService();
 			System.out.println("GoItemManagement.ko");
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(pathURL.equals("/ADItemDelete.ko")){
+			action = new ADItemDeleteService();
+			System.out.println("ADItemDelete.ko");
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(pathURL.equals("/GoItemAdd.ko")){
+			actionCommand = new ActionCommand();
+			actionCommand.setRedirect(false);
+			actionCommand.setPath("./admin/add_item.jsp");
+			System.out.println("GoItemAdd.ko");
+			
+		} else if(pathURL.equals("/ItemAdd.ko")){
+			action = new ItemAddService();
+			System.out.println("ItemAdd.ko");
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(pathURL.equals("/ADItemDetail.ko")){
+			action = new ADItemDetailService();
+			System.out.println("ADItemDetail.ko");
 			try {
 				actionCommand = action.execute(request, response);
 			} catch (Exception e) {

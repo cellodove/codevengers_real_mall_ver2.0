@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="ven.shop.model.MallItemVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% request.setCharacterEncoding("utf-8"); %>
+<jsp:useBean id="adminDAO" class="ven.shop.dao.AdminDAO"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +11,8 @@
 <title>상품관리</title>
 </head>
 <body>
+	
+	
 	<h1>상품 관리</h1>
 	총 상품: &nbsp;<strong><c:out value="${listcount}" /></strong>개
 	<table>
@@ -61,8 +66,21 @@
 								<c:out value="${item.item_allnumber}" />
 							</td>
 							
+						<%-- 	<%	
+							ArrayList<MallItemVO> list = adminDAO.getItemList(page, limit); 
+							for(MallItemVO mallItemVO : list){
+							%> -
+							
 							<td>
-								<%-- <img src="../images/product/<c:out value="${man_item.item_picure}" />" width="442" height="442"> --%>
+								<img src="../images/product/<%= mallItemVO.getItem_picture %>" width="250" height="250">
+							</td>
+							
+						 	<%	} %> --%>
+							
+							<td>
+								<a href="./ADItemDelete.ko?item_num=<c:out value="${item.item_num}"/>" onclick="return confirm('정말로 삭제하시겠습니까?');">
+							<button type="button">삭제</button>
+								</a>
 							</td>
 							
 						</tr>
@@ -71,6 +89,10 @@
 			</c:when>
 		</c:choose>
 	</table>
+	
+	<a href="./GoItemAdd.ko">
+		<button type="button">상품추가</button>
+	</a> 
 	
 	
 	

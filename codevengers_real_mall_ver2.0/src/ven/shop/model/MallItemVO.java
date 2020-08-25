@@ -9,7 +9,7 @@ public class MallItemVO {
 	private String item_type;
 	private int item_size;
 	private String item_gender;
-	private Date item_maketiem;
+	private Date item_maketime;
 	private int item_price;
 	private int item_remain;
 	private int item_allnumber;
@@ -48,11 +48,11 @@ public class MallItemVO {
 	public void setItem_gender(String item_gender) {
 		this.item_gender = item_gender;
 	}
-	public Date getItem_maketiem() {
-		return item_maketiem;
+	public Date getItem_maketime() {
+		return item_maketime;
 	}
-	public void setItem_maketiem(Date item_maketiem) {
-		this.item_maketiem = item_maketiem;
+	public void setItem_maketiem(Date item_maketime) {
+		this.item_maketime = item_maketime;
 	}
 	public int getItem_price() {
 		return item_price;

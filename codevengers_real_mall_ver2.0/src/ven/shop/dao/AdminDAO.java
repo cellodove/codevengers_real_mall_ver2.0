@@ -378,7 +378,6 @@ System.out.println("getManList dao come");
 				System.out.println("dao 삭제성공");
 				return true;
 			}else {
-				System.out.println("DB비밀번호가 다릅니다.");
 				System.out.println("dao 삭제실패");
 				return false;
 			}
@@ -412,8 +411,9 @@ System.out.println("getManList dao come");
 			Context context = new InitialContext();
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
 			connection = dataSource.getConnection();
-			String sql = "select * from(select rownum rnum, item_num, item_name, item_type,item_gender,item_price,item_remain,item_allnumber,item_picture ";
-			sql+="(where rnum>=? and rnum<=?))";
+			String sql = "select * from (select rownum rnum, item_num, item_name, item_type, item_gender, ";
+			sql	+= "item_price, item_remain,item_allnumber,item_picture from mall_item) ";
+			sql +="where rnum>=? and rnum<=?";
 			
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, startrow);
@@ -448,6 +448,158 @@ System.out.println("getManList dao come");
 			}
 		}
 		return null;
+	}
+
+	public boolean ADItemDelete(MallItemVO mallItemVO) {
+		System.out.println("ADItemDelete dao come");
+		String sql = "";
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		int result = 0;
+
+
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection();
+
+			sql = "delete from mall_Item where item_num = ?";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, mallItemVO.getItem_num());
+			
+			result = preparedStatement.executeUpdate();
+
+			if (result == 1) {
+				System.out.println("DB상품삭제되었습니다.");
+				System.out.println("dao 삭제성공");
+				return true;
+			}else {
+				System.out.println("dao 삭제실패");
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println("ADItemDelete dao error");
+			e.printStackTrace();
+		} finally {
+			try {
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				System.out.println("ADItemDelete dao DB error");
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
+	public boolean itemInsert(MallItemVO mallItemVO) {
+		int num = 0;
+		String sql = "";
+		int result = 0;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection();
+			sql = "select max(item_num) from mall_item";
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				num = resultSet.getInt(1) + 1;
+			} else {
+				num = 1;
+			}
+			preparedStatement.close();
+			sql = "insert into mall_item (item_num,item_name,item_type,item_gender,item_maketime,item_price,item_remain,item_allnumber,item_summary,item_date,item_picture )";
+			sql += " values(?,?,?,?,?,?,?,?,?,sysdate,?)";
+		
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setInt(1, num);
+			preparedStatement.setString(2, mallItemVO.getItem_name());
+			preparedStatement.setString(3, mallItemVO.getItem_type());
+			preparedStatement.setString(4, mallItemVO.getItem_gender());
+			preparedStatement.setDate(5,mallItemVO.getItem_maketime());
+			preparedStatement.setInt(6, mallItemVO.getItem_price());
+			preparedStatement.setInt(7, mallItemVO.getItem_remain());
+			preparedStatement.setInt(8, mallItemVO.getItem_allnumber());
+			preparedStatement.setString(9, mallItemVO.getItem_summary());
+			preparedStatement.setString(10, mallItemVO.getItem_picture());
+			
+			result = preparedStatement.executeUpdate();
+			if (result == 0) {
+				return false;
+			}
+			return true;
+		} catch (Exception e) {
+			System.out.println("글 등록 실패!:");
+			e.printStackTrace();
+		}finally {
+			try {
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
+	public MallItemVO getItemDetail(int item_num) {
+		System.out.println("getItemDetail dao come");
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			Context context = new InitialContext( );
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection( );
+			String sql = "select * from mall_item where item_num = ?";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, item_num);
+			resultSet = preparedStatement.executeQuery( );
+			if (resultSet.next()) {
+				
+				MallItemVO mallItemVO = new MallItemVO();
+				
+				mallItemVO.setItem_num(resultSet.getInt("item_num"));
+				mallItemVO.setItem_name(resultSet.getString("item_name"));
+				mallItemVO.setItem_type(resultSet.getString("item_type"));
+				mallItemVO.setItem_size(resultSet.getInt("item_size"));
+				mallItemVO.setItem_gender(resultSet.getString("item_gender"));
+				mallItemVO.setItem_maketiem(resultSet.getDate("item_maketime"));
+				mallItemVO.setItem_price(resultSet.getInt("item_price"));
+				mallItemVO.setItem_remain(resultSet.getInt("item_remain"));
+				mallItemVO.setItem_allnumber(resultSet.getInt("item_allnumber"));
+				mallItemVO.setItem_summary(resultSet.getString("item_summary"));
+				mallItemVO.setItem_date(resultSet.getDate("item_date"));
+				mallItemVO.setItem_picture(resultSet.getString("item_picture"));
+				
+				return mallItemVO;
+			
+	}
+			
+		} catch (Exception e) {
+			System.out.println("getItemDetail dao Err");
+			e.printStackTrace();
+		} finally {
+			try {
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				System.out.println("getItemDetail dao DB Err");
+				e.printStackTrace();
+			}
+		}
+		return null;	
 	}
 
 

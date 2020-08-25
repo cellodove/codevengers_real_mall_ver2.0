@@ -6,17 +6,6 @@
 <meta charset="UTF-8">
 <title>회원상세</title>
 </head>
-<script type="text/javascript"></script>
-<script>
-
-function delete_button(){
-	if (confirm("정말 삭제하시겠습니까??") == true){ 
-    	document.form.submit();
-	}else{   
-    	return false;
-	}
-}
-</script>
 
 
 <body>
@@ -27,7 +16,7 @@ function delete_button(){
 				<input type="hidden" name="mem_num"
 					value="<c:out value='${memberVO.mem_num}'/>">
 				<fieldset>
-					<legend> 회원내용 내용</legend>
+					<legend> 회원 내용</legend>
 
 					<p>
 						<label> 아이디 </label> <br/>

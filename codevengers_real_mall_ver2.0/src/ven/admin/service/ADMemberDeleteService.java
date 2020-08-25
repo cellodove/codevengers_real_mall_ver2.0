@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import ven.shop.action.Action;
 import ven.shop.command.ActionCommand;
 import ven.shop.dao.AdminDAO;
-import ven.shop.dao.MemberDAO;
 import ven.shop.model.MemberVO;
 
 public class ADMemberDeleteService implements Action {
