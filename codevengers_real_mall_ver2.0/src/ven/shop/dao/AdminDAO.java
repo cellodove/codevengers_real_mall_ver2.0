@@ -515,21 +515,22 @@ System.out.println("getManList dao come");
 				num = 1;
 			}
 			preparedStatement.close();
-			sql = "insert into mall_item (item_num,item_name,item_type,item_gender,item_maketime,item_price,item_remain,item_allnumber,item_summary,item_date,item_picture )";
-			sql += " values(?,?,?,?,?,?,?,?,?,sysdate,?)";
+			sql = "insert into mall_item (item_num,item_name,item_type,item_size,item_gender,item_maketime,item_price,item_remain,item_allnumber,item_summary,item_date,item_picture )";
+			sql += " values(?,?,?,?,?,?,?,?,?,?,sysdate,?)";
 		
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setInt(1, num);
 			preparedStatement.setString(2, mallItemVO.getItem_name());
 			preparedStatement.setString(3, mallItemVO.getItem_type());
-			preparedStatement.setString(4, mallItemVO.getItem_gender());
-			preparedStatement.setDate(5,mallItemVO.getItem_maketime());
-			preparedStatement.setInt(6, mallItemVO.getItem_price());
-			preparedStatement.setInt(7, mallItemVO.getItem_remain());
-			preparedStatement.setInt(8, mallItemVO.getItem_allnumber());
-			preparedStatement.setString(9, mallItemVO.getItem_summary());
-			preparedStatement.setString(10, mallItemVO.getItem_picture());
+			preparedStatement.setInt(4, mallItemVO.getItem_size());
+			preparedStatement.setString(5, mallItemVO.getItem_gender());
+			preparedStatement.setDate(6,mallItemVO.getItem_maketime());
+			preparedStatement.setInt(7, mallItemVO.getItem_price());
+			preparedStatement.setInt(8, mallItemVO.getItem_remain());
+			preparedStatement.setInt(9, mallItemVO.getItem_allnumber());
+			preparedStatement.setString(10, mallItemVO.getItem_summary());
+			preparedStatement.setString(11, mallItemVO.getItem_picture());
 			
 			result = preparedStatement.executeUpdate();
 			if (result == 0) {
@@ -622,8 +623,8 @@ System.out.println("getManList dao come");
 			
 			preparedStatement.setString(1, mallItemVO.getItem_name());
 			preparedStatement.setString(2, mallItemVO.getItem_type());
-			preparedStatement.setString(3, mallItemVO.getItem_gender());
-			preparedStatement.setInt(4, mallItemVO.getItem_size());
+			preparedStatement.setInt(3, mallItemVO.getItem_size());
+			preparedStatement.setString(4, mallItemVO.getItem_gender());
 			preparedStatement.setDate(5, mallItemVO.getItem_maketime());
 			preparedStatement.setInt(6, mallItemVO.getItem_price());
 			preparedStatement.setInt(7, mallItemVO.getItem_remain());

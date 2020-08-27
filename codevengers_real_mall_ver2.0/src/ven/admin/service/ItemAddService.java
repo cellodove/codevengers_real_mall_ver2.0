@@ -31,6 +31,7 @@ public class ItemAddService implements Action {
 			
 			mallItemVO.setItem_name(multipartRequest.getParameter("item_name"));
 			mallItemVO.setItem_type(multipartRequest.getParameter("item_type"));
+			mallItemVO.setItem_size(Integer.parseInt(multipartRequest.getParameter("item_size")));
 			mallItemVO.setItem_gender(multipartRequest.getParameter("item_gender"));
 			mallItemVO.setItem_maketime(java.sql.Date.valueOf(multipartRequest.getParameter("item_maketime")));
 			mallItemVO.setItem_price(Integer.parseInt(multipartRequest.getParameter("item_price")));
@@ -44,10 +45,10 @@ public class ItemAddService implements Action {
 			
 			
 			if (result == false) {
-				System.out.println("게시판 등록 실패");
+				System.out.println("상품 등록 실패");
 				return null;
 			}
-			System.out.println("게시판 등록 완료");
+			System.out.println("상품 등록 완료");
 			actionCommand.setRedirect(true);
 			actionCommand.setPath("./GoItemManagement.ko");
 			return actionCommand;

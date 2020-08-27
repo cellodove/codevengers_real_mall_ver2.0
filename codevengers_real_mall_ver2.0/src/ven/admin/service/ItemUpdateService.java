@@ -54,7 +54,7 @@ public class ItemUpdateService implements Action {
 			}
 			System.out.println("상품수정 완료");
 			actionCommand.setRedirect(true);
-			actionCommand.setPath("./ADItemDetail.ko");
+			actionCommand.setPath("./GoItemManagement.ko");
 			return actionCommand;
 		} catch (Exception e) {
 			e.printStackTrace();
