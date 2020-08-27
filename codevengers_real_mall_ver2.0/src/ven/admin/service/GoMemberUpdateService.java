@@ -10,11 +10,11 @@ import ven.shop.command.ActionCommand;
 import ven.shop.dao.AdminDAO;
 import ven.shop.model.MemberVO;
 
-public class GoAdminMemberChangeInformationService implements Action {
+public class GoMemberUpdateService implements Action {
 
 	@Override
 	public ActionCommand execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("GoAdminMemberChangeInformationService");
+		System.out.println("GoMemberUpdateService");
 		
 		MemberVO memberVO = new MemberVO();
 		AdminDAO adminDAO = new AdminDAO();

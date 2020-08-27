@@ -13,12 +13,14 @@ import ven.admin.service.ADItemDeleteService;
 import ven.admin.service.ADItemDetailService;
 import ven.admin.service.ADMemberDeleteService;
 import ven.admin.service.AdminLoginCheckService;
-import ven.admin.service.AdminMemberChangeInformationService;
-import ven.admin.service.GoAdminMemberChangeInformationService;
 import ven.admin.service.GoItemManagementService;
+import ven.admin.service.GoItemUpdateService;
+import ven.admin.service.GoMemberUpdateService;
 import ven.admin.service.ItemAddService;
+import ven.admin.service.ItemUpdateService;
 import ven.admin.service.MemberDetailService;
 import ven.admin.service.MemberManagementService;
+import ven.admin.service.MemberUpdateService;
 import ven.shop.action.Action;
 import ven.shop.command.ActionCommand;
 
@@ -68,18 +70,18 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		} else if(pathURL.equals("/GoAdminMemberChangeInformation.ko")){
-			action = new GoAdminMemberChangeInformationService();
-			System.out.println("GoAdminMemberChangeInformation.ko");
+		} else if(pathURL.equals("/GoMemberUpdate.ko")){
+			action = new GoMemberUpdateService();
+			System.out.println("GoMemberUpdate.ko");
 			try {
 				actionCommand = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-		} else if(pathURL.equals("/AdminMemberChangeInformation.ko")){
-			action = new AdminMemberChangeInformationService();
-			System.out.println("AdminMemberChangeInformation.ko");
+		} else if(pathURL.equals("/MemberUpdate.ko")){
+			action = new MemberUpdateService();
+			System.out.println("MemberUpdate.ko");
 			try {
 				actionCommand = action.execute(request, response);
 			} catch (Exception e) {
@@ -131,6 +133,24 @@ public class AdminFrontController extends HttpServlet {
 		} else if(pathURL.equals("/ADItemDetail.ko")){
 			action = new ADItemDetailService();
 			System.out.println("ADItemDetail.ko");
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(pathURL.equals("/GoItemUpdate.ko")){
+			action = new GoItemUpdateService();
+			System.out.println("GoItemUpdate.ko");
+			try {
+				actionCommand = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(pathURL.equals("/ItemUpdate.ko")){
+			action = new ItemUpdateService();
+			System.out.println("ItemUpdate.ko");
 			try {
 				actionCommand = action.execute(request, response);
 			} catch (Exception e) {

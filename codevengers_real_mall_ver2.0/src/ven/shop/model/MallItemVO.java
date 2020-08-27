@@ -51,7 +51,7 @@ public class MallItemVO {
 	public Date getItem_maketime() {
 		return item_maketime;
 	}
-	public void setItem_maketiem(Date item_maketime) {
+	public void setItem_maketime(Date item_maketime) {
 		this.item_maketime = item_maketime;
 	}
 	public int getItem_price() {

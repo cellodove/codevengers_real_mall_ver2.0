@@ -209,7 +209,7 @@
 </script>
 
 <body>
-<form action="./AdminMemberChangeInformation.ko" method="post" name="signupform">
+<form action="./MemberUpdate.ko" method="post" name="signupform">
 <fieldset>
 <table>
 

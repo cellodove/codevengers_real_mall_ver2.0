@@ -293,8 +293,8 @@ System.out.println("getManList dao come");
 		
 	}
 
-	public boolean ADmemberInformationChange(MemberVO memberVO) {
-		System.out.println("ADmemberInformationChange dao come");
+	public boolean ADmemberUpdate(MemberVO memberVO) {
+		System.out.println("ADmemberUpdate dao come");
 		String sql = "";
 		int result = 0;
 
@@ -337,14 +337,14 @@ System.out.println("getManList dao come");
 				return true;
 			}
 		} catch (Exception e) {
-			System.out.println("ADmemberInformationChange dao error");
+			System.out.println("ADmemberUpdate dao error");
 			e.printStackTrace();
 		} finally {
 			try {
 				preparedStatement.close();
 				connection.close();
 			} catch (SQLException e) {
-				System.out.println("ADmemberInformationChange dao DB error");
+				System.out.println("ADmemberUpdate dao DB error");
 				e.printStackTrace();
 			}
 		}
@@ -574,7 +574,7 @@ System.out.println("getManList dao come");
 				mallItemVO.setItem_type(resultSet.getString("item_type"));
 				mallItemVO.setItem_size(resultSet.getInt("item_size"));
 				mallItemVO.setItem_gender(resultSet.getString("item_gender"));
-				mallItemVO.setItem_maketiem(resultSet.getDate("item_maketime"));
+				mallItemVO.setItem_maketime(resultSet.getDate("item_maketime"));
 				mallItemVO.setItem_price(resultSet.getInt("item_price"));
 				mallItemVO.setItem_remain(resultSet.getInt("item_remain"));
 				mallItemVO.setItem_allnumber(resultSet.getInt("item_allnumber"));
@@ -600,6 +600,58 @@ System.out.println("getManList dao come");
 			}
 		}
 		return null;	
+	}
+
+	public boolean ADItemUpdate(MallItemVO mallItemVO) {
+		System.out.println("ADItemUpdate dao come");
+		String sql = "";
+		int result = 0;
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection();
+
+			sql = "update mall_item set item_name=?,item_type=?,item_size=?,item_gender=?,item_maketime=?,item_price=?,item_remain=?,item_allnumber=?,item_summary=?,item_picture=?";
+			sql += " where item_num=?";
+
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setString(1, mallItemVO.getItem_name());
+			preparedStatement.setString(2, mallItemVO.getItem_type());
+			preparedStatement.setString(3, mallItemVO.getItem_gender());
+			preparedStatement.setInt(4, mallItemVO.getItem_size());
+			preparedStatement.setDate(5, mallItemVO.getItem_maketime());
+			preparedStatement.setInt(6, mallItemVO.getItem_price());
+			preparedStatement.setInt(7, mallItemVO.getItem_remain());
+			preparedStatement.setInt(8, mallItemVO.getItem_allnumber());
+			preparedStatement.setString(9, mallItemVO.getItem_summary());
+			preparedStatement.setString(10, mallItemVO.getItem_picture());
+			preparedStatement.setInt(11, mallItemVO.getItem_num());
+
+
+			result = preparedStatement.executeUpdate();
+			if (result == 0) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("ADItemUpdate dao error");
+			e.printStackTrace();
+		} finally {
+			try {
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				System.out.println("ADItemUpdate dao DB error");
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 
 

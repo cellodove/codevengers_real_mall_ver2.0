@@ -113,7 +113,7 @@
 						
 					<div class="btnJoinArea">
 						
-						<a href="./GoAdminMemberChangeInformation.ko?mem_id=<c:out value="${memberVO.mem_id}"/>">
+						<a href="./GoMemberUpdate.ko?mem_id=<c:out value="${memberVO.mem_id}"/>">
 							<button type="button">수정</button>
 						</a> 
 						

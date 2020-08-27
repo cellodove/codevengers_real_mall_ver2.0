@@ -72,7 +72,7 @@
 					
 					<p>
 						<label> 상품설명 </label> <br/>
-						<textarea rows="10" cols="5"><c:out value="${mallItemVO.item_summary}"/></textarea>
+						<textarea rows="3" cols="30"><c:out value="${mallItemVO.item_summary}"/></textarea>
 					</p>
 					
 					
@@ -91,7 +91,7 @@
 						
 					<div class="btnJoinArea">
 						
-						<a href="./GoAdminItemChangeInformation.ko?item_num=<c:out value="${mallItemVO.item_num}"/>">
+						<a href="./GoItemUpdate.ko?item_num=<c:out value="${mallItemVO.item_num}"/>">
 							<button type="button">수정</button>
 						</a> 
 						

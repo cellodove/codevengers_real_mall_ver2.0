@@ -8,11 +8,11 @@ import ven.shop.command.ActionCommand;
 import ven.shop.dao.AdminDAO;
 import ven.shop.model.MemberVO;
 
-public class AdminMemberChangeInformationService implements Action {
+public class MemberUpdateService implements Action {
 
 	@Override
 	public ActionCommand execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("AdminMemberChangeInformationService");
+		System.out.println("MemberUpdateService");
 		MemberVO memberVO = new MemberVO();
 		AdminDAO adminDAO = new AdminDAO();
 		
@@ -39,12 +39,12 @@ public class AdminMemberChangeInformationService implements Action {
 		
 		
 		
-		adminDAO.ADmemberInformationChange(memberVO);
+		adminDAO.ADmemberUpdate(memberVO);
 		
 		ActionCommand actionCommand = new ActionCommand();
 		actionCommand.setRedirect(false);
 		
-		if (adminDAO.ADmemberInformationChange(memberVO)==true) {
+		if (adminDAO.ADmemberUpdate(memberVO)==true) {
 			System.out.println("회원수정 완료.");
 			actionCommand.setPath("./admin/admin_main.jsp");
 			
